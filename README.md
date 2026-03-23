@@ -37,22 +37,22 @@ Versão detalhada (Card, Conversation e Confirmation): [docs/user-stories.md](do
 
 ### 🔴 Prioridade Alta: Inteligência e Impacto
 
-- _[US01-AL] Tradução Lúdica de Impacto:_ Metáforas visuais para impacto ambiental.
-- _[US02-AL] Conversor de Combustível em Carbono:_ Cálculo técnico baseado no GHG Protocol.
-- _[US03-AL] Cálculo de Economia de Papel Térmico:_ Mensuração de resíduos físicos evitados.
-- _[US04-AL] Dashboard Comparativo "Com vs. Sem Taggy":_ Análise de ROI financeiro e ambiental.
+- _[US01] Tradução Lúdica de Impacto:_ Metáforas visuais para impacto ambiental.
+- _[US02] Conversor de Combustível em Carbono:_ Cálculo técnico baseado no GHG Protocol.
+- _[US03] Cálculo de Economia de Papel Térmico:_ Mensuração de resíduos físicos evitados.
+- _[US04] Dashboard Comparativo "Com vs. Sem Taggy":_ Análise de ROI financeiro e ambiental.
+- _[US04] Gestão de Inventário de Frota:_ Gerenciamento de tags cadastradas.
 
 ### 🟡 Prioridade Média: Rotina e Experiência
 
-- _[US05-ME] Placar de "Tempo de Vida":_ Acumulado de horas economizadas fora das filas.
-- _[US06-ME] Roteirizador de Fluxo Sustentável:_ Sugestão de trajetos com menor pegada de carbono.
-- _[US07-ME] Notificações "Passagem Limpa":_ Feedback imediato via push após o uso.
+- _[US06] Placar de "Tempo de Vida":_ Acumulado de horas economizadas fora das filas.
+- _[US07] Roteirizador de Fluxo Sustentável:_ Sugestão de trajetos com menor pegada de carbono.
+- _[US08] Notificações "Passagem Limpa":_ Feedback imediato via push após o uso.
 
 ### 🟢 Prioridade Baixa: Diferenciais e Negócio
 
-- _[US08-BA] Barra de Progresso de Metas Semanais:_ Gamificação para retenção do usuário.
-- _[US09-BA] Calculadora de Payback Operacional:_ Demonstrativo de quando a economia paga a mensalidade.
-- _[US10-BA] Certificado Anual de Impacto ESG:_ Documento oficial para marketing institucional.
+- _[US09] Barra de Progresso de Metas Semanais:_ Gamificação para retenção do usuário.
+- _[US10] Calculadora de Payback Operacional:_ Demonstrativo de quando a economia paga a mensalidade.
 
 ---
 
