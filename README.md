@@ -76,13 +76,16 @@ Capturas de tela solicitadas para comprovar o backlog e a organização do traba
 
 _Backlog no Trello:_
 
-<p align="center">
-  <img src="docs/images/backlog-01.png" alt="Backlog no Trello – visão 1 do quadro" width="920" />
-</p>
-
-<p align="center">
-  <img src="docs/images/backlog-02.png" alt="Backlog no Trello – visão 2 do quadro" width="920" />
-</p>
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/images/backlog-01.png" alt="Backlog no Trello – visão 1 do quadro" width="440" />
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/images/backlog-02.png" alt="Backlog no Trello – visão 2 do quadro" width="440" />
+    </td>
+  </tr>
+</table>
 
 ---
 
