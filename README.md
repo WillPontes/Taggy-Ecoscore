@@ -2,16 +2,6 @@
 
 O _Taggy_ é uma solução de pagamento automático (Tag) que vai além da conveniência. Nosso objetivo é transformar cada passagem por pedágios e estacionamentos em dados acionáveis de sustentabilidade (ESG), economia de combustível e eficiência operacional.
 
-## Sumário
-
-- [Visão Geral](#-visão-geral)
-- [Público-Alvo (Personas)](#-público-alvo-personas)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [User Stories](#-user-stories)
-- [Backlog (Trello)](#-backlog-trello)
-- [Evidências (prints)](#-evidências)
-- [Equipe](#-equipe-e-papéis)
-
 ---
 
 ## Visão Geral
