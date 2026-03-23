@@ -2,19 +2,19 @@
 
 O _Taggy_ é uma solução de pagamento automático (Tag) que vai além da conveniência. Nosso objetivo é transformar cada passagem por pedágios e estacionamentos em dados acionáveis de sustentabilidade (ESG), economia de combustível e eficiência operacional.
 
-## 📌 Sumário
+## Sumário
 
-- [Visão Geral](#visão-geral)
-- [Público-Alvo (Personas)](#público-alvo-personas)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [User Stories](#user-stories)
-- [Backlog (Trello)](#backlog-trello)
-- [Evidências (prints)](#evidências-prints)
-- [Equipe](#equipe)
+- [Visão Geral](#-visão-geral)
+- [Público-Alvo (Personas)](#-público-alvo-personas)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [User Stories](#-user-stories)
+- [Backlog (Trello)](#-backlog-trello)
+- [Evidências (prints)](#-evidências)
+- [Equipe](#-equipe-e-papéis)
 
 ---
 
-## 🚀 Visão Geral
+## Visão Geral
 
 O sistema utiliza a inteligência de dados para calcular o impacto ambiental positivo gerado pela fluidez no trânsito. Focamos em três pilares:
 
@@ -22,14 +22,14 @@ O sistema utiliza a inteligência de dados para calcular o impacto ambiental pos
 2. _Engajamento:_ Linguagem lúdica para aproximar o usuário da causa ambiental.
 3. _Gestão:_ Dashboards robustos para frotas que buscam certificados ESG.
 
-## 👥 Público-Alvo (Personas)
+## Público-Alvo (Personas)
 
 - _Mariana Costa (Sustentabilidade):_ Precisa de dados auditáveis para relatórios anuais.
 - _Ricardo Almeida (Operações):_ Focado em redução de custos de combustível e manutenção.
 - _Tiago Mendes (Motorista):_ Valoriza praticidade, status e o "tempo ganho".
 - _Jéssica Castro (Product Lead):_ Busca métricas de engajamento e diferenciais competitivos.
 
-## 🛠 Estrutura do Projeto
+## Estrutura do Projeto
 
 O projeto está dividido em 5 pilares estratégicos:
 
@@ -41,7 +41,7 @@ O projeto está dividido em 5 pilares estratégicos:
 
 ---
 
-## 📋 User Stories
+## User Stories
 
 Versão detalhada (Card, Conversation e Confirmation): [docs/user-stories.md](docs/user-stories.md).
 
@@ -66,11 +66,11 @@ Versão detalhada (Card, Conversation e Confirmation): [docs/user-stories.md](do
 
 ---
 
-## 📋 Backlog (Trello)
+## Backlog (Trello)
 
 O backlog do projeto está organizado no quadro da equipe na disciplina, com cartões alinhados às user stories e prioridades. Acompanhe o estado das tarefas em: [Trello – cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2).
 
-## 📸 Evidências
+## Evidências
 
 Capturas de tela solicitadas para comprovar o backlog e a organização do trabalho no Trello. Os arquivos originais ficam em [`docs/images/`](docs/images/). No GitHub (e na maioria dos previews de Markdown), as figuras abaixo aparecem **embutidas** no README — basta que `docs/images/*.png` esteja versionado no repositório.
 
@@ -89,7 +89,7 @@ _Backlog no Trello:_
 
 ---
 
-## 👥 Equipe e Papéis
+## Equipe e Papéis
 
 | Nome              | Papel                   | E-mail             |
 | :---------------- | :---------------------- | :----------------- |
