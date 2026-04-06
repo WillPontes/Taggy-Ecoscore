@@ -77,20 +77,20 @@ Em conjunto, as 12 imagens cobrem **as 11 user stories**.
 
 ### Mapa telas ↔ user stories
 
-| Tela | Arquivo                                                                 | Descrição breve                                                                | US principais | US relacionadas  |
-| :--- | :---------------------------------------------------------------------- | :----------------------------------------------------------------------------- | :------------ | :--------------- |
-| 01   | [01.png](docs/images/mockup/01.png)                                     | Dashboard mobile — aba Carbono (impacto lúdico + valor técnico em kg CO₂)      | US02, US03    | US04, US07, US10 |
-| 02   | [02.png](docs/images/mockup/02.png)                                     | Mesmo dashboard — aba Água (litros poupados)                                   | US02, US04    | US03, US07, US10 |
-| 03   | [03.png](docs/images/mockup/03.png)                                     | Mesmo dashboard — aba Papel (metragem evitada)                                 | US02, US04    | US03, US07, US10 |
-| 04   | [04.png](docs/images/mockup/04.png)                                     | Resumo e lista das últimas passagens (CO₂, combustível, tempo por passagem)    | US03, US07    | US05, US09       |
-| 05   | [05.png](docs/images/mockup/05.png)                                     | Notificação push na tela de bloqueio (praça, g CO₂, ml diesel, min ganhos)     | US09          | US03, US07       |
-| 06   | [06.png](docs/images/mockup/06.png)                                     | Perfil motorista (frota, placa, combustível; atalhos histórico / notificações) | US06          | US07, US09       |
-| 07   | [07.png](docs/images/mockup/07.png)                                     | Mapa — inserir destino / pesquisar (início da jornada de rota)                 | US08          | —                |
-| 08   | [08.png](docs/images/mockup/08.png)                                     | Rota Verde no mapa + painel Eco-estimativa (CO₂ evitado, tempo parado)         | US08          | US03, US07       |
-| 09   | [09.png](docs/images/mockup/09.png)                                     | Dashboard web operacional (KPIs, filtros, exportar ESG, heatmap, top 5)        | US05, US03    | US06, US10, US11 |
-| 10   | [10.png](docs/images/mockup/10.png)                                     | Registro de frota (tag, placa, modelo, combustível; CSV; editar / excluir)     | US06          | US03             |
-| 11   | [11.png](docs/images/mockup/11.png)                                     | Configurações — conta e calibração operacional (parâmetros de ROI)             | US11          | US01             |
-| 12   | [12.png](docs/images/mockup/12.png)                                     | Gerar relatórios com filtros e área de resultado                               | US03, US04    | US11, US01       |
+| Tela | Arquivo                             | Descrição breve                                                                | US principais | US relacionadas  |
+| :--- | :---------------------------------- | :----------------------------------------------------------------------------- | :------------ | :--------------- |
+| 01   | [01.png](docs/images/mockup/01.png) | Dashboard mobile — aba Carbono (impacto lúdico + valor técnico em kg CO₂)      | US02, US03    | US04, US07, US10 |
+| 02   | [02.png](docs/images/mockup/02.png) | Mesmo dashboard — aba Água (litros poupados)                                   | US02, US04    | US03, US07, US10 |
+| 03   | [03.png](docs/images/mockup/03.png) | Mesmo dashboard — aba Papel (metragem evitada)                                 | US02, US04    | US03, US07, US10 |
+| 04   | [04.png](docs/images/mockup/04.png) | Resumo e lista das últimas passagens (CO₂, combustível, tempo por passagem)    | US03, US07    | US05, US09       |
+| 05   | [05.png](docs/images/mockup/05.png) | Notificação push na tela de bloqueio (praça, g CO₂, ml diesel, min ganhos)     | US09          | US03, US07       |
+| 06   | [06.png](docs/images/mockup/06.png) | Perfil motorista (frota, placa, combustível; atalhos histórico / notificações) | US06          | US07, US09       |
+| 07   | [07.png](docs/images/mockup/07.png) | Mapa — inserir destino / pesquisar (início da jornada de rota)                 | US08          | —                |
+| 08   | [08.png](docs/images/mockup/08.png) | Rota Verde no mapa + painel Eco-estimativa (CO₂ evitado, tempo parado)         | US08          | US03, US07       |
+| 09   | [09.png](docs/images/mockup/09.png) | Dashboard web operacional (KPIs, filtros, exportar ESG, heatmap, top 5)        | US05, US03    | US06, US10, US11 |
+| 10   | [10.png](docs/images/mockup/10.png) | Registro de frota (tag, placa, modelo, combustível; CSV; editar / excluir)     | US06          | US03             |
+| 11   | [11.png](docs/images/mockup/11.png) | Configurações — conta e calibração operacional (parâmetros de ROI)             | US11          | US01             |
+| 12   | [12.png](docs/images/mockup/12.png) | Gerar relatórios com filtros e área de resultado                               | US03, US04    | US11, US01       |
 
 ### Galeria de mockups
 
@@ -198,24 +198,28 @@ Coluna _Backlog (Sprint)_ no Trello: **US10**, **US11**.
 
 ## Links importantes
 
-- **Diagramas (draw.io, original):** [arquivo no Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link)
-- **Repositório GitHub:** [WillPontes/FDS-Projetos2](https://github.com/WillPontes/FDS-Projetos2)
-- **Backlog (Trello):** [cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2)
-- **Screencast do protótipo (YouTube):** [vídeo](https://www.youtube.com/watch?v=7lFrXswsO0k)
-- **Figma:** [protótipo](https://www.figma.com/design/ME63dOBQJ943GhMTh00W4g/Wireframe?node-id=0-1&p=f&t=KS4WtIegdrdhUasH-0)
+Referências usadas no dia a dia do projeto — código, desenho da solução, modelagem e acompanhamento do backlog.
+
+| Área                    | Link                                                                                                        |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------- |
+| Código                  | [GitHub](https://github.com/WillPontes/FDS-Projetos2)                                                       |
+| Backlog e Sprints       | [Trello](https://trello.com/b/alfFb7dV/cesar-projetos-2)                                                    |
+| Wireframes              | [Figma](https://www.figma.com/design/ME63dOBQJ943GhMTh00W4g/Wireframe?node-id=0-1&p=f&t=KS4WtIegdrdhUasH-0) |
+| Screencast              | [YouTube](https://www.youtube.com/watch?v=7lFrXswsO0k)                                                      |
+| Diagramas de Atividades | [Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link)       |
 
 ---
 
 ## Equipe e Papéis
 
-| Nome              | Papel                   | E-mail             | LinkedIn                                                                                 | GitHub                                                                 |
-| :---------------- | :---------------------- | :----------------- | :--------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
-| _Afonso Araujo_   | Desenvolvedor Back-End  | ahma@cesar.school  | [LinkedIn](https://www.linkedin.com/in/afonso-araujo-8ab810369/)                           | [GitHub](https://github.com/araujo1901mx)                              |
-| _Igor Phillipe_   | Tech Lead               | ipara@cesar.school | [LinkedIn](https://www.linkedin.com/in/igrphillipe/)                                       | [GitHub](https://github.com/IgrPhillipe)                                |
-| _Williams Pontes_ | Desenvolvedor Back-End  | jwlp@cesar.school  | [LinkedIn](https://www.linkedin.com/in/williams-pontes/)                                   | [GitHub](https://github.com/WillPontes)                                |
-| _Jean Augusto_    | Desenvolvedor Back-End  | jasm2@cesar.school | [LinkedIn](https://www.linkedin.com/in/jean-augusto-0562953b4/)                            | [GitHub](https://github.com/jeanaugustox)                              |
-| _Lucas Gabriel_   | Desenvolvedor FullStack | lgcs2@cesar.school | [LinkedIn](https://www.linkedin.com/in/lucasgabrielcs/)                                    | [GitHub](https://github.com/lucasgabrielcs)                            |
-| _Kellwen Costa_   | Desenvolvedor Back-End  | kilc@cesar.school  | [LinkedIn](https://www.linkedin.com/in/kellwencosta/)                                      | [GitHub](https://github.com/kellwencosta)                              |
+| Nome              | Papel                   | E-mail             | LinkedIn                                                         | GitHub                                      |
+| :---------------- | :---------------------- | :----------------- | :--------------------------------------------------------------- | :------------------------------------------ |
+| _Afonso Araujo_   | Desenvolvedor Back-End  | ahma@cesar.school  | [LinkedIn](https://www.linkedin.com/in/afonso-araujo-8ab810369/) | [GitHub](https://github.com/araujo1901mx)   |
+| _Igor Phillipe_   | Tech Lead               | ipara@cesar.school | [LinkedIn](https://www.linkedin.com/in/igrphillipe/)             | [GitHub](https://github.com/IgrPhillipe)    |
+| _Williams Pontes_ | Desenvolvedor Back-End  | jwlp@cesar.school  | [LinkedIn](https://www.linkedin.com/in/williams-pontes/)         | [GitHub](https://github.com/WillPontes)     |
+| _Jean Augusto_    | Desenvolvedor Back-End  | jasm2@cesar.school | [LinkedIn](https://www.linkedin.com/in/jean-augusto-0562953b4/)  | [GitHub](https://github.com/jeanaugustox)   |
+| _Lucas Gabriel_   | Desenvolvedor FullStack | lgcs2@cesar.school | [LinkedIn](https://www.linkedin.com/in/lucasgabrielcs/)          | [GitHub](https://github.com/lucasgabrielcs) |
+| _Kellwen Costa_   | Desenvolvedor Back-End  | kilc@cesar.school  | [LinkedIn](https://www.linkedin.com/in/kellwencosta/)            | [GitHub](https://github.com/kellwencosta)   |
 
 ---
 
