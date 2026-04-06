@@ -65,7 +65,7 @@ Este screencast percorre o protótipo do Taggy: principais telas e fluxos e como
 
 **Assistir no YouTube:** [Screencast do protótipo Taggy](https://www.youtube.com/watch?v=7lFrXswsO0k)
 
-[![Screencast do protótipo Taggy](https://img.youtube.com/vi/7lFrXswsO0k/maxresdefault.jpg)](https://www.youtube.com/watch?v=7lFrXswsO0k)
+[![Screencast do protótipo Taggy — clique para abrir no YouTube](docs/images/thumb.jpeg)](https://www.youtube.com/watch?v=7lFrXswsO0k)
 
 ---
 
@@ -169,10 +169,6 @@ Exportações PNG em [`docs/diagramas/`](docs/diagramas/) — subconjunto das us
 ## Backlog (Trello)
 
 O backlog do projeto está organizado no quadro da equipe na disciplina, com cartões alinhados às user stories e prioridades. Acompanhe o estado das tarefas em: [Trello – cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2).
-
-## Evidências
-
-Capturas de tela do backlog no Trello para comprovar a organização do trabalho, **agrupadas por sprint** (Sprints 1 a 4). Os arquivos estão em [`docs/images/`](docs/images/). No GitHub (e na maioria dos previews de Markdown), as figuras abaixo aparecem **embutidas** no README quando os PNG estão versionados.
 
 ### Sprint 1
 
