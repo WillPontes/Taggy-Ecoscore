@@ -1,13 +1,5 @@
 ## 🔴 Prioridade Alta: Fundação e entregas core
 
-### **ID: US01 – Configuração do repositório**
-
-- **Épico / Sprint:** Épico 1 – Fundação · Sprint 1
-- **Descrição:** Criar boilerplate de front-end e back-end: estrutura, qualidade de código e documentação mínima para onboarding.
-- **Card:** Como time de desenvolvimento, queremos um repositório padronizado com front-end e back-end, ferramentas de qualidade e documentação clara para que qualquer pessoa consiga clonar, configurar e rodar o projeto localmente com previsibilidade.
-- **Conversation:** A base técnica deve incluir convenções de Git, lint/formatador, variáveis de ambiente documentadas sem segredos e, opcionalmente, templates que facilitem issues e pull requests.
-- **Confirmation:** README com visão do projeto e instruções para rodar localmente; estrutura de pastas acordada e `.gitignore` adequado; convenção de branches e fluxo de PR documentados; ESLint e Prettier (ou equivalente) configurados; `.env.example` com variáveis explicadas (sem segredos); templates de issue/PR opcionais criados.
-
 ### **ID: US02 – Tradução Lúdica de Impacto**
 
 - **Épico / Sprint:** Épico 2 – Sustentabilidade · Sprint 3
