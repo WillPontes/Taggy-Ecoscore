@@ -35,6 +35,8 @@ O projeto está dividido em 5 pilares estratégicos:
 
 Versão detalhada (Card, Conversation e Confirmation): [docs/user-stories.md](docs/user-stories.md).
 
+Diagramas de atividades (US02–US11) estão na [seção Diagramas de atividades](#diagramas-de-atividades-user-stories); o walkthrough do protótipo está no [screencast](#screencast-do-prototipo).
+
 ### 🔴 Prioridade Alta: Fundação e entregas core
 
 - _[US01] Configuração do repositório:_ Boilerplate front/back, qualidade de código e documentação mínima para onboarding.
@@ -54,6 +56,16 @@ Versão detalhada (Card, Conversation e Confirmation): [docs/user-stories.md](do
 
 - _[US10] Barra de Progresso de Metas Semanais:_ Metas semanais configuráveis por frota ou perfil.
 - _[US11] Calculadora de Payback Operacional:_ Saldo real (economia − mensalidade) e status "Tag Paga".
+
+<a id="screencast-do-prototipo"></a>
+
+## Screencast do protótipo
+
+Este screencast percorre o protótipo do Taggy: principais telas e fluxos e como eles se conectam às user stories e funcionalidades documentadas neste repositório.
+
+**Assistir no YouTube:** [Screencast do protótipo Taggy](https://www.youtube.com/watch?v=7lFrXswsO0k)
+
+[![Screencast do protótipo Taggy](https://img.youtube.com/vi/7lFrXswsO0k/maxresdefault.jpg)](https://www.youtube.com/watch?v=7lFrXswsO0k)
 
 ---
 
@@ -145,6 +157,65 @@ Em conjunto, as 12 imagens cobrem **as 11 user stories**.
   </tr>
 </table>
 
+<a id="diagramas-de-atividades-user-stories"></a>
+
+## Diagramas de atividades (user stories)
+
+Os diagramas abaixo são **diagramas de atividades** (UML) por user story, em [`docs/diagramas/`](docs/diagramas/) (`US02.png` … `US11.png`). A US01 (configuração do repositório) não possui diagrama neste conjunto.
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <p><strong>US02</strong> — Tradução lúdica de impacto</p>
+      <img src="docs/diagramas/US02.png" alt="Diagrama de atividades US02: tela de impacto, abas carbono água papel, número real, exemplo do dia a dia, exibição" width="440" />
+    </td>
+    <td align="center" valign="top" width="50%">
+      <p><strong>US03</strong> — Conversor de combustível em carbono</p>
+      <img src="docs/diagramas/US03.png" alt="Diagrama de atividades US03: combustível economizado, carro leve flex ou pesado, tabelas de conversão, kg CO2, relatório opcional" width="440" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <p><strong>US04</strong> — Economia de papel térmico</p>
+      <img src="docs/diagramas/US04.png" alt="Diagrama de atividades US04: passagens digitais, papel térmico evitado, metros, árvores, água, totais na tela" width="440" />
+    </td>
+    <td align="center" valign="top">
+      <p><strong>US05</strong> — Dashboard comparativo Com vs. Sem Taggy</p>
+      <img src="docs/diagramas/US05.png" alt="Diagrama de atividades US05: painel comparativo, filtros, gasto com tag, estimativa sem tag, R$ e litros, gráfico" width="440" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <p><strong>US06</strong> — Inventário de frota</p>
+      <img src="docs/diagramas/US06.png" alt="Diagrama de atividades US06: cadastrar editar importar ou apagar veículos, validações e tag duplicada" width="440" />
+    </td>
+    <td align="center" valign="top">
+      <p><strong>US07</strong> — Placar de tempo de vida</p>
+      <img src="docs/diagramas/US07.png" alt="Diagrama de atividades US07: passagem com tag, tempos fila manual vs tag, tempo economizado, soma, placar na tela" width="440" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <p><strong>US08</strong> — Roteirizador de fluxo sustentável</p>
+      <img src="docs/diagramas/US08.png" alt="Diagrama de atividades US08: destino, rotas possíveis, histórico, rotas verdes, CO2 evitado, mapa, iniciar viagem opcional" width="440" />
+    </td>
+    <td align="center" valign="top">
+      <p><strong>US09</strong> — Notificações Passagem limpa</p>
+      <img src="docs/diagramas/US09.png" alt="Diagrama de atividades US09: confirmação de passagem, combustível e CO2, texto da notificação, envio" width="440" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <p><strong>US10</strong> — Metas semanais</p>
+      <img src="docs/diagramas/US10.png" alt="Diagrama de atividades US10: meta frota ou usuário, contagem semanal, número e porcentagem, barra de progresso" width="440" />
+    </td>
+    <td align="center" valign="top">
+      <p><strong>US11</strong> — Payback operacional</p>
+      <img src="docs/diagramas/US11.png" alt="Diagrama de atividades US11: soma economia combustível e manutenção, mensalidade, saldo, destaque Tag Paga ou falta economizar" width="440" />
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## Backlog (Trello)
@@ -170,6 +241,15 @@ _Backlog no Trello:_
     </td>
   </tr>
 </table>
+
+---
+
+## Links importantes
+
+- **Diagramas (draw.io, original):** [arquivo no Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link)
+- **Repositório GitHub:** [WillPontes/FDS-Projetos2](https://github.com/WillPontes/FDS-Projetos2)
+- **Backlog (Trello):** [cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2)
+- **Screencast do protótipo (YouTube):** [vídeo](https://www.youtube.com/watch?v=7lFrXswsO0k)
 
 ---
 

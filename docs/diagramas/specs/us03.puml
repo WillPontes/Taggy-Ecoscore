@@ -4,7 +4,7 @@ start
 :O sistema vê se o carro é leve (flex)\nou pesado (diesel);
 if (É carro leve flex?) then (sim)
   :Usa a tabela de conversão\npara carro leve;
-else (é pesado a diesel)
+else (não)
   :Usa a tabela de conversão\npara carro pesado;
 endif
 :Calcula quantos kg de CO2\nforam evitados;

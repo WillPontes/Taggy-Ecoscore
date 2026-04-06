@@ -41,7 +41,7 @@
         <mxCell id="12" edge="1" parent="us_container" source="2" target="3"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="13" edge="1" parent="us_container" source="3" target="4"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="14" value="sim" style="edgeStyle=orthogonalEdgeStyle;html=1;align=center;verticalAlign=middle;rounded=0;" edge="1" parent="us_container" source="4" target="5"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="15" value="é pesado a diesel" style="edgeStyle=orthogonalEdgeStyle;html=1;align=center;verticalAlign=middle;rounded=0;" edge="1" parent="us_container" source="4" target="6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="15" value="não" style="edgeStyle=orthogonalEdgeStyle;html=1;align=center;verticalAlign=middle;rounded=0;" edge="1" parent="us_container" source="4" target="6"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="16" edge="1" parent="us_container" source="5" target="7"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="17" edge="1" parent="us_container" source="6" target="7"><mxGeometry relative="1" as="geometry" /></mxCell>
         <mxCell id="18" edge="1" parent="us_container" source="7" target="8"><mxGeometry relative="1" as="geometry" /></mxCell>
