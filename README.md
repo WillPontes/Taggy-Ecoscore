@@ -206,6 +206,7 @@ Coluna _Backlog (Sprint)_ no Trello: **US10**, **US11**.
 - **Repositório GitHub:** [WillPontes/FDS-Projetos2](https://github.com/WillPontes/FDS-Projetos2)
 - **Backlog (Trello):** [cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2)
 - **Screencast do protótipo (YouTube):** [vídeo](https://www.youtube.com/watch?v=7lFrXswsO0k)
+- **Figma:** [protótipo](https://www.figma.com/design/ME63dOBQJ943GhMTh00W4g/Wireframe?node-id=0-1&p=f&t=KS4WtIegdrdhUasH-0)
 
 ---
 
