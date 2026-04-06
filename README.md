@@ -35,24 +35,25 @@ O projeto está dividido em 5 pilares estratégicos:
 
 Versão detalhada (Card, Conversation e Confirmation): [docs/user-stories.md](docs/user-stories.md).
 
-### 🔴 Prioridade Alta: Inteligência e Impacto
+### 🔴 Prioridade Alta: Fundação e entregas core
 
-- _[US01] Tradução Lúdica de Impacto:_ Metáforas visuais para impacto ambiental.
-- _[US02] Conversor de Combustível em Carbono:_ Cálculo técnico baseado no GHG Protocol.
-- _[US03] Cálculo de Economia de Papel Térmico:_ Mensuração de resíduos físicos evitados.
-- _[US04] Dashboard Comparativo "Com vs. Sem Taggy":_ Análise de ROI financeiro e ambiental.
-- _[US05] Gestão de Inventário de Frota:_ Gerenciamento de tags cadastradas.
+- _[US01] Configuração do repositório:_ Boilerplate front/back, qualidade de código e documentação mínima para onboarding.
+- _[US02] Tradução Lúdica de Impacto:_ Metáforas visuais para impacto ambiental (carbono, água, papel).
+- _[US03] Conversor de Combustível em Carbono:_ Cálculo ESG com GHG Protocol (leve flex / pesado diesel) e auditoria.
+- _[US04] Cálculo de Economia de Papel Térmico:_ Papel (BPA) evitado, água poupada e árvores preservadas no dashboard.
+- _[US05] Dashboard Comparativo "Com vs. Sem Taggy":_ ROI com delta em R$ e litros e filtros por veículo, placa ou período.
+- _[US06] Gestão de Inventário de Frota:_ Cadastro de veículos e Tags com validações, lote (CSV/Excel) e CRUD.
 
 ### 🟡 Prioridade Média: Rotina e Experiência
 
-- _[US06] Placar de "Tempo de Vida":_ Acumulado de horas economizadas fora das filas.
-- _[US07] Roteirizador de Fluxo Sustentável:_ Sugestão de trajetos com menor pegada de carbono.
-- _[US08] Notificações "Passagem Limpa":_ Feedback imediato via push após o uso.
+- _[US07] Placar de "Tempo de Vida":_ Horas/dias ganhos com atualização após cada transação confirmada.
+- _[US08] Roteirizador de Fluxo Sustentável:_ Rotas verdes no mapa e estimativa de CO₂ evitado antes do trajeto.
+- _[US09] Notificações "Passagem Limpa":_ Push rápido com economia de combustível e CO₂ da passagem.
 
 ### 🟢 Prioridade Baixa: Diferenciais e Negócio
 
-- _[US09] Barra de Progresso de Metas Semanais:_ Gamificação para retenção do usuário.
-- _[US10] Calculadora de Payback Operacional:_ Demonstrativo de quando a economia paga a mensalidade.
+- _[US10] Barra de Progresso de Metas Semanais:_ Metas semanais configuráveis por frota ou perfil.
+- _[US11] Calculadora de Payback Operacional:_ Saldo real (economia − mensalidade) e status "Tag Paga".
 
 ---
 
