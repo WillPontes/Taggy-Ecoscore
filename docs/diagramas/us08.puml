@@ -3,10 +3,8 @@ start
 :O usuário digita para onde vai;
 :O sistema monta caminhos possíveis;
 :O sistema olha o histórico:\nonde costuma ter menos fila;
-partition "Mapa" {
-  :Marca no mapa as "Rotas Verdes"\n(caminhos com menos parada);
-  :Calcula quanto CO2 pode ser evitado\nantes de sair;
-}
+:Marca no mapa as "Rotas Verdes"\n(caminhos com menos parada);
+:Calcula quanto CO2 pode ser evitado\nantes de sair;
 :Mostra o mapa e esses números;
 if (O usuário começa a viagem?) then (sim)
   :Abre a rota escolhida;
