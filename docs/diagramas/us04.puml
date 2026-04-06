@@ -1,0 +1,11 @@
+@startuml US04_Papel_Termico
+start
+:O sistema registra passagens\nsem papel (só digital);
+partition "Contas" {
+  :Calcula quanto papel térmico\ndeixou de ser usado em cada passagem;
+  :Converte isso em litros de água\nque deixaram de ser gastos na fábrica;
+  :Soma o total de\n"árvores preservadas";
+}
+:Mostra na tela os litros de água\ne as árvores no total;
+stop
+@enduml
