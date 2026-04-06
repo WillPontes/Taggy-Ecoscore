@@ -75,6 +75,9 @@ _Backlog no Trello:_
     <td align="center" valign="top" width="50%">
       <img src="docs/images/backlog-02.png" alt="Backlog no Trello – visão 2 do quadro" width="440" />
     </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/images/backlog-03.png" alt="Backlog no Trello – visão 3 do quadro" width="440" />
+    </td>
   </tr>
 </table>
 
