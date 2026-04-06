@@ -71,28 +71,30 @@ Este screencast percorre o protótipo do Taggy: principais telas e fluxos e como
 
 ## Sketches e storyboards do protótipo
 
-Esta seção documenta os **sketches e storyboards** do produto. Existem **12 telas** em [`docs/images/mockup/`](docs/images/mockup/) (`01.png` … `12.png`). Cada tela pode ilustrar **várias user stories** ao mesmo tempo: na tabela abaixo indicamos as **US principais** e as **relacionadas**.
+Esta seção documenta os **sketches e storyboards** do produto. Existem **12 telas** em [`docs/images/mockup/`](docs/images/mockup/) (`01.png` … `12.png`). Na coluna **Arquivo**, cada nome de arquivo é um **link** para o PNG no repositório. Cada tela pode ilustrar **várias user stories** ao mesmo tempo: na tabela abaixo indicamos as **US principais** e as **relacionadas**.
 
 Em conjunto, as 12 imagens cobrem **as 11 user stories**.
 
 ### Mapa telas ↔ user stories
 
-| Tela | Arquivo  | Descrição breve                                                                | US principais | US relacionadas  |
-| :--- | :------- | :----------------------------------------------------------------------------- | :------------ | :--------------- |
-| 01   | `01.png` | Dashboard mobile — aba Carbono (impacto lúdico + valor técnico em kg CO₂)      | US02, US03    | US04, US07, US10 |
-| 02   | `02.png` | Mesmo dashboard — aba Água (litros poupados)                                   | US02, US04    | US03, US07, US10 |
-| 03   | `03.png` | Mesmo dashboard — aba Papel (metragem evitada)                                 | US02, US04    | US03, US07, US10 |
-| 04   | `04.png` | Resumo e lista das últimas passagens (CO₂, combustível, tempo por passagem)    | US03, US07    | US05, US09       |
-| 05   | `05.png` | Notificação push na tela de bloqueio (praça, g CO₂, ml diesel, min ganhos)     | US09          | US03, US07       |
-| 06   | `06.png` | Perfil motorista (frota, placa, combustível; atalhos histórico / notificações) | US06          | US07, US09       |
-| 07   | `07.png` | Mapa — inserir destino / pesquisar (início da jornada de rota)                 | US08          | —                |
-| 08   | `08.png` | Rota Verde no mapa + painel Eco-estimativa (CO₂ evitado, tempo parado)         | US08          | US03, US07       |
-| 09   | `09.png` | Dashboard web operacional (KPIs, filtros, exportar ESG, heatmap, top 5)        | US05, US03    | US06, US10, US11 |
-| 10   | `10.png` | Registro de frota (tag, placa, modelo, combustível; CSV; editar / excluir)     | US06          | US03             |
-| 11   | `11.png` | Configurações — conta e calibração operacional (parâmetros de ROI)             | US11          | US01             |
-| 12   | `12.png` | Gerar relatórios com filtros e área de resultado                               | US03, US04    | US11, US01       |
+| Tela | Arquivo                                                                 | Descrição breve                                                                | US principais | US relacionadas  |
+| :--- | :---------------------------------------------------------------------- | :----------------------------------------------------------------------------- | :------------ | :--------------- |
+| 01   | [01.png](docs/images/mockup/01.png)                                     | Dashboard mobile — aba Carbono (impacto lúdico + valor técnico em kg CO₂)      | US02, US03    | US04, US07, US10 |
+| 02   | [02.png](docs/images/mockup/02.png)                                     | Mesmo dashboard — aba Água (litros poupados)                                   | US02, US04    | US03, US07, US10 |
+| 03   | [03.png](docs/images/mockup/03.png)                                     | Mesmo dashboard — aba Papel (metragem evitada)                                 | US02, US04    | US03, US07, US10 |
+| 04   | [04.png](docs/images/mockup/04.png)                                     | Resumo e lista das últimas passagens (CO₂, combustível, tempo por passagem)    | US03, US07    | US05, US09       |
+| 05   | [05.png](docs/images/mockup/05.png)                                     | Notificação push na tela de bloqueio (praça, g CO₂, ml diesel, min ganhos)     | US09          | US03, US07       |
+| 06   | [06.png](docs/images/mockup/06.png)                                     | Perfil motorista (frota, placa, combustível; atalhos histórico / notificações) | US06          | US07, US09       |
+| 07   | [07.png](docs/images/mockup/07.png)                                     | Mapa — inserir destino / pesquisar (início da jornada de rota)                 | US08          | —                |
+| 08   | [08.png](docs/images/mockup/08.png)                                     | Rota Verde no mapa + painel Eco-estimativa (CO₂ evitado, tempo parado)         | US08          | US03, US07       |
+| 09   | [09.png](docs/images/mockup/09.png)                                     | Dashboard web operacional (KPIs, filtros, exportar ESG, heatmap, top 5)        | US05, US03    | US06, US10, US11 |
+| 10   | [10.png](docs/images/mockup/10.png)                                     | Registro de frota (tag, placa, modelo, combustível; CSV; editar / excluir)     | US06          | US03             |
+| 11   | [11.png](docs/images/mockup/11.png)                                     | Configurações — conta e calibração operacional (parâmetros de ROI)             | US11          | US01             |
+| 12   | [12.png](docs/images/mockup/12.png)                                     | Gerar relatórios com filtros e área de resultado                               | US03, US04    | US11, US01       |
 
 ### Galeria de mockups
+
+Seleção das telas mais representativas; as demais permanecem na tabela acima e em [`docs/images/mockup/`](docs/images/mockup/).
 
 <table>
   <tr>
@@ -101,16 +103,6 @@ Em conjunto, as 12 imagens cobrem **as 11 user stories**.
       <img src="docs/images/mockup/01.png" alt="Mockup: dashboard mobile com placar de tempo, impacto lúdico na aba Carbono e meta semanal" width="340" />
     </td>
     <td align="center" valign="top" width="50%">
-      <p><strong>Tela 02</strong> — Dashboard, aba Água</p>
-      <img src="docs/images/mockup/02.png" alt="Mockup: mesmo dashboard com impacto lúdico na aba Água e litros de água poupados" width="340" />
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <p><strong>Tela 03</strong> — Dashboard, aba Papel</p>
-      <img src="docs/images/mockup/03.png" alt="Mockup: mesmo dashboard com impacto lúdico na aba Papel e papel evitado" width="340" />
-    </td>
-    <td align="center" valign="top">
       <p><strong>Tela 04</strong> — Resumo e últimas passagens</p>
       <img src="docs/images/mockup/04.png" alt="Mockup: resumo total de passagens CO2 e horas e lista de últimas passagens com métricas por praça" width="340" />
     </td>
@@ -119,16 +111,6 @@ Em conjunto, as 12 imagens cobrem **as 11 user stories**.
     <td align="center" valign="top">
       <p><strong>Tela 05</strong> — Notificação push</p>
       <img src="docs/images/mockup/05.png" alt="Mockup: tela de bloqueio com notificação de passagem limpa CO2 diesel e minutos ganhos" width="340" />
-    </td>
-    <td align="center" valign="top">
-      <p><strong>Tela 06</strong> — Perfil motorista</p>
-      <img src="docs/images/mockup/06.png" alt="Mockup: perfil do motorista com frota placa e atalhos para histórico notificações e veículo" width="340" />
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <p><strong>Tela 07</strong> — Mapa, inserir destino</p>
-      <img src="docs/images/mockup/07.png" alt="Mockup: mapa com campo para inserir destino e pesquisar" width="340" />
     </td>
     <td align="center" valign="top">
       <p><strong>Tela 08</strong> — Rota Verde e eco-estimativa</p>
@@ -145,16 +127,6 @@ Em conjunto, as 12 imagens cobrem **as 11 user stories**.
       <img src="docs/images/mockup/10.png" alt="Mockup: tabela de registro de frota com tag placa modelo combustível importar CSV e ações editar excluir" width="440" />
     </td>
   </tr>
-  <tr>
-    <td align="center" valign="top">
-      <p><strong>Tela 11</strong> — Configurações e calibração ROI</p>
-      <img src="docs/images/mockup/11.png" alt="Mockup: página de configurações da conta e calibração operacional para ROI" width="440" />
-    </td>
-    <td align="center" valign="top">
-      <p><strong>Tela 12</strong> — Gerar relatórios</p>
-      <img src="docs/images/mockup/12.png" alt="Mockup: tela gerar relatórios com filtros e área de resultado" width="440" />
-    </td>
-  </tr>
 </table>
 
 <a id="diagramas-de-atividades-user-stories"></a>
@@ -165,6 +137,33 @@ Os **diagramas de atividades** (UML) das user stories **US02–US11** estão no 
 
 **[Abrir diagramas no draw.io — Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link)**
 
+### Galeria de diagramas (exportados)
+
+Exportações PNG em [`docs/diagramas/`](docs/diagramas/) — subconjunto das user stories de **prioridade alta**; o arquivo no Drive reúne **US02–US11** por completo.
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <p><strong>US02</strong> — Tradução Lúdica de Impacto</p>
+      <img src="docs/diagramas/US02.png" alt="Diagrama de atividades US02 Tradução Lúdica de Impacto" width="440" />
+    </td>
+    <td align="center" valign="top" width="50%">
+      <p><strong>US03</strong> — Conversor de Combustível em Carbono</p>
+      <img src="docs/diagramas/US03.png" alt="Diagrama de atividades US03 Conversor de Combustível em Carbono" width="440" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <p><strong>US05</strong> — Dashboard Comparativo Com vs Sem Taggy</p>
+      <img src="docs/diagramas/US05.png" alt="Diagrama de atividades US05 Dashboard Comparativo" width="440" />
+    </td>
+    <td align="center" valign="top">
+      <p><strong>US06</strong> — Gestão de Inventário de Frota</p>
+      <img src="docs/diagramas/US06.png" alt="Diagrama de atividades US06 Gestão de Inventário de Frota" width="440" />
+    </td>
+  </tr>
+</table>
+
 ---
 
 ## Backlog (Trello)
@@ -173,23 +172,31 @@ O backlog do projeto está organizado no quadro da equipe na disciplina, com car
 
 ## Evidências
 
-Capturas de tela solicitadas para comprovar o backlog e a organização do trabalho no Trello. Os arquivos originais ficam em [`docs/images/`](docs/images/). No GitHub (e na maioria dos previews de Markdown), as figuras abaixo aparecem **embutidas** no README — basta que `docs/images/*.png` esteja versionado no repositório.
+Capturas de tela do backlog no Trello para comprovar a organização do trabalho, **agrupadas por sprint** (Sprints 1 a 4). Os arquivos estão em [`docs/images/`](docs/images/). No GitHub (e na maioria dos previews de Markdown), as figuras abaixo aparecem **embutidas** no README quando os PNG estão versionados.
 
-_Backlog no Trello:_
+### Sprint 1
 
-<table>
-  <tr>
-    <td align="center" valign="top" width="33%">
-      <img src="docs/images/backlog-01.png" alt="Backlog no Trello – visão 1 do quadro" width="440" />
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="docs/images/backlog-02.png" alt="Backlog no Trello – visão 2 do quadro" width="440" />
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="docs/images/backlog-03.png" alt="Backlog no Trello – visão 3 do quadro" width="440" />
-    </td>
-  </tr>
-</table>
+Coluna _Backlog (Sprint)_ no Trello: **US03**, **US06**, **US04**.
+
+<img src="docs/images/sprint-01.png" alt="Backlog Sprint 1 — coluna Backlog (Sprint) com US03, US06, US04" width="440" />
+
+### Sprint 2
+
+Coluna _Backlog (Sprint)_ no Trello: **US02**, **US05**.
+
+<img src="docs/images/sprint-02.png" alt="Backlog Sprint 2 — coluna Backlog (Sprint) com US02, US05" width="440" />
+
+### Sprint 3
+
+Coluna _Backlog (Sprint)_ no Trello: **US08**, **US07**, **US09**.
+
+<img src="docs/images/sprint-03.png" alt="Backlog Sprint 3 — coluna Backlog (Sprint) com US08, US07, US09" width="440" />
+
+### Sprint 4
+
+Coluna _Backlog (Sprint)_ no Trello: **US10**, **US11**.
+
+<img src="docs/images/sprint-04.png" alt="Backlog Sprint 4 — coluna Backlog (Sprint) com US10, US11" width="440" />
 
 ---
 
@@ -204,14 +211,14 @@ _Backlog no Trello:_
 
 ## Equipe e Papéis
 
-| Nome              | Papel                   | E-mail             |
-| :---------------- | :---------------------- | :----------------- |
-| _Afonso Araujo_   | Desenvolvedor Back-End  | ahma@cesar.school  |
-| _Igor Phillipe_   | Desenvolvedor FullStack | ipara@cesar.school |
-| _Williams Pontes_ | Product Owner           | jwlp@cesar.school  |
-| _Jean Augusto_    | Desenvolvedor Back-End  | jasm2@cesar.school |
-| _Lucas Gabriel_   | Desenvolvedor FullStack | lgcs2@cesar.school |
-| _Kellwen Costa_   | Desenvolvedor Back-End  | kilc@cesar.school  |
+| Nome              | Papel                   | E-mail             | LinkedIn                                                                                 | GitHub                                                                 |
+| :---------------- | :---------------------- | :----------------- | :--------------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
+| _Afonso Araujo_   | Desenvolvedor Back-End  | ahma@cesar.school  | [LinkedIn](https://www.linkedin.com/in/afonso-araujo-8ab810369/)                           | [GitHub](https://github.com/araujo1901mx)                              |
+| _Igor Phillipe_   | Tech Lead               | ipara@cesar.school | [LinkedIn](https://www.linkedin.com/in/igrphillipe/)                                       | [GitHub](https://github.com/IgrPhillipe)                                |
+| _Williams Pontes_ | Desenvolvedor Back-End  | jwlp@cesar.school  | [LinkedIn](https://www.linkedin.com/in/williams-pontes/)                                   | [GitHub](https://github.com/WillPontes)                                |
+| _Jean Augusto_    | Desenvolvedor Back-End  | jasm2@cesar.school | [LinkedIn](https://www.linkedin.com/in/jean-augusto-0562953b4/)                            | [GitHub](https://github.com/jeanaugustox)                              |
+| _Lucas Gabriel_   | Desenvolvedor FullStack | lgcs2@cesar.school | [LinkedIn](https://www.linkedin.com/in/lucasgabrielcs/)                                    | [GitHub](https://github.com/lucasgabrielcs)                            |
+| _Kellwen Costa_   | Desenvolvedor Back-End  | kilc@cesar.school  | [LinkedIn](https://www.linkedin.com/in/kellwencosta/)                                      | [GitHub](https://github.com/kellwencosta)                              |
 
 ---
 
