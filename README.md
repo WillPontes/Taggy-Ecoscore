@@ -214,8 +214,8 @@ Referências usadas no dia a dia do projeto — código, desenho da solução, m
 
 | Nome              | Papel                   | E-mail             | LinkedIn                                                         | GitHub                                      |
 | :---------------- | :---------------------- | :----------------- | :--------------------------------------------------------------- | :------------------------------------------ |
-| _Afonso Araujo_   | Desenvolvedor Back-End  | ahma@cesar.school  | [LinkedIn](https://www.linkedin.com/in/afonso-araujo-8ab810369/) | [GitHub](https://github.com/araujo1901mx)   |
-| _Igor Phillipe_   | Tech Lead               | ipara@cesar.school | [LinkedIn](https://www.linkedin.com/in/igrphillipe/)             | [GitHub](https://github.com/IgrPhillipe)    |
+| _Afonso Araujo_   | Engenheiro de Dados  | ahma@cesar.school  | [LinkedIn](https://www.linkedin.com/in/afonso-araujo-8ab810369/) | [GitHub](https://github.com/araujo1901mx)   |
+| _Igor Phillipe_   | Tech Lead & Desenvolvedor FullStack               | ipara@cesar.school | [LinkedIn](https://www.linkedin.com/in/igrphillipe/)             | [GitHub](https://github.com/IgrPhillipe)    |
 | _Williams Pontes_ | Product Owner & Desenvolvedor Back-End  | jwlp@cesar.school  | [LinkedIn](https://www.linkedin.com/in/williams-pontes/)         | [GitHub](https://github.com/WillPontes)     |
 | _Jean Augusto_    | Desenvolvedor Back-End  | jasm2@cesar.school | [LinkedIn](https://www.linkedin.com/in/jean-augusto-0562953b4/)  | [GitHub](https://github.com/jeanaugustox)   |
 | _Lucas Gabriel_   | Desenvolvedor FullStack | lgcs2@cesar.school | [LinkedIn](https://www.linkedin.com/in/lucasgabrielcs/)          | [GitHub](https://github.com/lucasgabrielcs) |
