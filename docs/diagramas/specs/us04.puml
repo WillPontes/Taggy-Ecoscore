@@ -1,9 +1,9 @@
-@startuml US04_Papel_Termico
+@startuml US04
 start
-:O sistema registra passagens\nsem papel (só digital);
-:Calcula quanto papel térmico\ndeixou de ser usado em cada passagem;
-:Converte isso em litros de água\nque deixaram de ser gastos na fábrica;
-:Soma o total de\n"árvores preservadas";
-:Mostra na tela os litros de água\ne as árvores no total;
+:O sistema contabiliza cada passagem\nsem parada como ticket evitado;
+:Calcula quanto papel térmico (BPA)\ndeixou de ser usado;
+:Converte papel evitado em litros de água\npoupados na produção;
+:Soma o total de "árvores preservadas";
+:Mostra na tela tickets, litros de água\ne árvores acumulados;
 stop
 @enduml

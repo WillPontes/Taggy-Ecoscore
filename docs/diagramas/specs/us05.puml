@@ -1,4 +1,4 @@
-@startuml US05_Dashboard_Comparativo
+@startuml US05
 start
 :O gestor abre o painel\n"Com Taggy x Sem Taggy";
 :O gestor escolhe os filtros:\ncarro, placa ou período;

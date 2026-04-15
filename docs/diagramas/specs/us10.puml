@@ -1,4 +1,4 @@
-@startuml US10_Metas_Semanais
+@startuml US10
 start
 if (A meta é da frota inteira?) then (sim)
   :Configura a meta da semana\npara a frota;

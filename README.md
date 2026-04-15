@@ -33,29 +33,21 @@ O projeto está dividido em 5 pilares estratégicos:
 
 ## User Stories
 
-Versão detalhada (Card, Conversation e Confirmation) no Trello: [cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2).
+O detalhe **Card / Conversation / Confirmation (CCC)**, épicos e links para cartões no Trello estão em **[docs/user-stories.md](docs/user-stories.md)**. Quadro: [cesar-projetos-2](https://trello.com/b/alfFb7dV/cesar-projetos-2). Diagramas de atividades: [`docs/diagramas/specs/`](docs/diagramas/specs/) (PlantUML e draw.io) e exportações PNG em [`docs/diagramas/`](docs/diagramas/); visão agregada opcional no [Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link).
 
-Diagramas de atividades (US02–US11): [arquivo draw.io no Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link).
-
-### 🔴 Prioridade Alta: Fundação e entregas core
-
-- _[US01] Configuração do repositório:_ Boilerplate front/back, qualidade de código e documentação mínima para onboarding.
-- _[US02] Tradução Lúdica de Impacto:_ Metáforas visuais para impacto ambiental (carbono, água, papel).
-- _[US03] Conversor de Combustível em Carbono:_ Cálculo ESG com GHG Protocol (leve flex / pesado diesel) e auditoria.
-- _[US04] Cálculo de Economia de Papel Térmico:_ Papel (BPA) evitado, água poupada e árvores preservadas no dashboard.
-- _[US05] Dashboard Comparativo "Com vs. Sem Taggy":_ ROI com delta em R$ e litros e filtros por veículo, placa ou período.
-- _[US06] Gestão de Inventário de Frota:_ Cadastro de veículos e Tags com validações, lote (CSV/Excel) e CRUD.
-
-### 🟡 Prioridade Média: Rotina e Experiência
-
-- _[US07] Placar de "Tempo de Vida":_ Horas/dias ganhos com atualização após cada transação confirmada.
-- _[US08] Roteirizador de Fluxo Sustentável:_ Rotas verdes no mapa e estimativa de CO₂ evitado antes do trajeto.
-- _[US09] Notificações "Passagem Limpa":_ Push rápido com economia de combustível e CO₂ da passagem.
-
-### 🟢 Prioridade Baixa: Diferenciais e Negócio
-
-- _[US10] Barra de Progresso de Metas Semanais:_ Metas semanais configuráveis por frota ou perfil.
-- _[US11] Calculadora de Payback Operacional:_ Saldo real (economia − mensalidade) e status "Tag Paga".
+| US | Prioridade | Título | Print UML (PNG no repositório) |
+| :- | :--------- | :----- | :------------------------------ |
+| US01 | Alta | Configuração do repositório | [US01.png](docs/diagramas/US01.png) |
+| US02 | Alta | Tradução Lúdica de Impacto | [US02.png](docs/diagramas/US02.png) |
+| US03 | Alta | Conversor de Combustível em Carbono | [US03.png](docs/diagramas/US03.png) |
+| US04 | Alta | Cálculo de Economia de Papel Térmico | [US04.png](docs/diagramas/US04.png) |
+| US05 | Alta | Dashboard Comparativo "Com vs. Sem Taggy" | [US05.png](docs/diagramas/US05.png) |
+| US06 | Alta | Gestão de Inventário de Frota | [US06.png](docs/diagramas/US06.png) |
+| US07 | Média | Placar de "Tempo de Vida" | [US07.png](docs/diagramas/US07.png) |
+| US08 | Média | Roteirizador de Fluxo Sustentável | [US08.png](docs/diagramas/US08.png) |
+| US09 | Média | Notificações "Passagem Limpa" | [US09.png](docs/diagramas/US09.png) |
+| US10 | Baixa | Barra de Progresso de Metas Semanais | [US10.png](docs/diagramas/US10.png) |
+| US11 | Baixa | Calculadora de Payback Operacional | [US11.png](docs/diagramas/US11.png) |
 
 <a id="screencast-do-prototipo"></a>
 
@@ -133,13 +125,13 @@ Seleção das telas mais representativas; as demais permanecem na tabela acima e
 
 ## Diagramas de atividades (user stories)
 
-Os **diagramas de atividades** (UML) das user stories **US02–US11** estão no arquivo draw.io (fonte editável e visão completa). A **US01** (configuração do repositório) não possui diagrama neste conjunto.
+Cada user story **US01–US11** tem fluxo em **PlantUML** (`us01.puml` … `us11.puml`) e **draw.io** (`us01.drawio` … `us11.drawio`) em [`docs/diagramas/specs/`](docs/diagramas/specs/). A **US08** inclui ainda uma vista complementar só de mapa em [`us08-mapa.drawio`](docs/diagramas/specs/us08-mapa.drawio). As figuras abaixo são exportações geradas a partir dos `.puml` para [`docs/diagramas/US01.png`](docs/diagramas/US01.png) … [`US11.png`](docs/diagramas/US11.png).
 
-**[Abrir diagramas no draw.io — Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link)**
+**[Abrir diagramas no draw.io — Google Drive](https://drive.google.com/file/d/1XGv4y-BJ-yUia8EKnrTdb78NESRhesFB/view?usp=drive_link)** (pode estar desatualizado em relação à pasta `specs/` — preferir os ficheiros do repositório.)
 
 ### Galeria de diagramas (exportados)
 
-Exportações PNG em [`docs/diagramas/`](docs/diagramas/) — subconjunto das user stories de **prioridade alta**; o arquivo no Drive reúne **US02–US11** por completo.
+Seleção das **US de prioridade alta** mais representativas para leitura rápida; as restantes (**US01**, **US04** e **US07–US11**) estão nos ficheiros PNG na mesma pasta.
 
 <table>
   <tr>

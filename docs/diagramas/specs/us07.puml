@@ -1,4 +1,4 @@
-@startuml US07_Placar_Tempo
+@startuml US07
 start
 :Uma passagem é confirmada\n(pagou com a tag);
 :O sistema pega o tempo médio\nna fila do pedágio manual;

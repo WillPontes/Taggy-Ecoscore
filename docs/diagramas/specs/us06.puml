@@ -1,4 +1,4 @@
-@startuml US06_Inventario_Frota
+@startuml US06
 start
 if (O que fazer?) then (cadastrar ou editar)
   :O gestor preenche placa, modelo,\ncombustível e número da Tag;

@@ -1,4 +1,4 @@
-@startuml US11_Payback_Operacional
+@startuml US11
 start
 :O sistema soma o que já economizou\n(combustível + manutenção);
 :O sistema pega o valor da mensalidade da tag;

@@ -1,4 +1,4 @@
-@startuml US03_Conversor_Carbono
+@startuml US03
 start
 :O sistema recebe quanto combustível\nfoi economizado (por carro ou por passagem);
 :O sistema vê se o carro é leve (flex)\nou pesado (diesel);

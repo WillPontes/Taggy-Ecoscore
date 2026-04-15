@@ -1,4 +1,4 @@
-@startuml US09_Passagem_Limpa
+@startuml US09
 start
 :O sistema confirma a passagem\n(pedágio ou estacionamento);
 :Calcula combustível economizado\nnessa ida;
