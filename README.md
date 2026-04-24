@@ -29,13 +29,6 @@ O projeto está dividido em 5 pilares estratégicos:
 - _Pilar 4:_ Conexão e Linguagem (UX Writing)
 - _Pilar 5:_ Vantagens de Negócio (Certificações)
 
-## Código (aplicação)
-
-O front (Vite + React) e a API (FastAPI) vivem em **`app/front`** e **`app/back`**. Para desenvolvimento, instalação e convenções de pastas, use os guias técnicos:
-
-- **[app/front/README.md](app/front/README.md)** — interface, arquitetura por features, como rodar o Vite.
-- **[app/back/README.md](app/back/README.md)** — API, Postgres com Docker Compose, Swagger, modelos e rotas.
-
 ---
 
 ## User Stories
@@ -138,27 +131,33 @@ Cada user story **US01–US11** tem fluxo em **PlantUML** (`us01.puml` … `us11
 
 ### Galeria de diagramas (exportados)
 
-Seleção das **US de prioridade alta** mais representativas para leitura rápida; as restantes (**US01**, **US04** e **US07–US11**) estão nos ficheiros PNG na mesma pasta.
+Seleção das **US de prioridade alta** mais representativas para leitura rápida; as restantes (**US06–US11**) estão nos ficheiros PNG na mesma pasta.
 
 <table>
   <tr>
     <td align="center" valign="top" width="50%">
-      <p><strong>US02</strong> — Tradução Lúdica de Impacto</p>
-      <img src="docs/diagramas/US02.png" alt="Diagrama de atividades US02 Tradução Lúdica de Impacto" width="440" />
+      <p><strong>US01</strong> — Tradução Lúdica de Impacto</p>
+      <img src="docs/diagramas/US01.png" alt="Diagrama de atividades US01 Tradução Lúdica de Impacto" width="440" />
     </td>
     <td align="center" valign="top" width="50%">
-      <p><strong>US03</strong> — Conversor de Combustível em Carbono</p>
-      <img src="docs/diagramas/US03.png" alt="Diagrama de atividades US03 Conversor de Combustível em Carbono" width="440" />
+      <p><strong>US02</strong> — Conversor de Combustível em Carbono</p>
+      <img src="docs/diagramas/US02.png" alt="Diagrama de atividades US02 Conversor de Combustível em Carbono" width="440" />
     </td>
   </tr>
   <tr>
     <td align="center" valign="top">
-      <p><strong>US05</strong> — Dashboard Comparativo Com vs Sem Taggy</p>
-      <img src="docs/diagramas/US05.png" alt="Diagrama de atividades US05 Dashboard Comparativo" width="440" />
+      <p><strong>US03</strong> — Cálculo de Economia de Papel Térmico</p>
+      <img src="docs/diagramas/US03.png" alt="Diagrama de atividades US03 Cálculo de Economia de Papel Térmico" width="440" />
     </td>
     <td align="center" valign="top">
-      <p><strong>US06</strong> — Gestão de Inventário de Frota</p>
-      <img src="docs/diagramas/US06.png" alt="Diagrama de atividades US06 Gestão de Inventário de Frota" width="440" />
+      <p><strong>US04</strong> — Dashboard Comparativo "Com vs. Sem Taggy"</p>
+      <img src="docs/diagramas/US04.png" alt="Diagrama de atividades US04 Dashboard Comparativo Com vs. Sem Taggy" width="440" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <p><strong>US05</strong> — Gestão de Inventário de Frota"</p>
+      <img src="docs/diagramas/US05.png" alt="Diagrama de atividades US05 Gestão de Inventário de Frota" width="440" />
     </td>
   </tr>
 </table>
