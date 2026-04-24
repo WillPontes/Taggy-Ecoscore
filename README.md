@@ -37,14 +37,14 @@ O detalhe **Card / Conversation / Confirmation (CCC)**, épicos e links para car
 
 | US | Prioridade | Título | Print UML (PNG no repositório) |
 | :- | :--------- | :----- | :------------------------------ |
-| US01 | Alta | Configuração do repositório | [US01.png](docs/diagramas/US01.png) |
-| US02 | Alta | Tradução Lúdica de Impacto | [US02.png](docs/diagramas/US02.png) |
-| US03 | Alta | Conversor de Combustível em Carbono | [US03.png](docs/diagramas/US03.png) |
-| US04 | Alta | Cálculo de Economia de Papel Térmico | [US04.png](docs/diagramas/US04.png) |
-| US05 | Alta | Dashboard Comparativo "Com vs. Sem Taggy" | [US05.png](docs/diagramas/US05.png) |
-| US06 | Alta | Gestão de Inventário de Frota | [US06.png](docs/diagramas/US06.png) |
-| US07 | Média | Placar de "Tempo de Vida" | [US07.png](docs/diagramas/US07.png) |
-| US08 | Média | Roteirizador de Fluxo Sustentável | [US08.png](docs/diagramas/US08.png) |
+| US01 | Alta | Tradução Lúdica de Impacto | [US01.png](docs/diagramas/US01.png) |
+| US02 | Alta | Conversor de Combustível em Carbono | [US02.png](docs/diagramas/US02.png) |
+| US03 | Alta | Cálculo de Economia de Papel Térmico | [US03.png](docs/diagramas/US03.png) |
+| US04 | Alta | Dashboard Comparativo "Com vs. Sem Taggy" | [US04.png](docs/diagramas/US04.png) |
+| US05 | Alta | Gestão de Inventário de Frota | [US05.png](docs/diagramas/US05.png) |
+| US06 | Alta | Placar de "Tempo de Vida" | [US06.png](docs/diagramas/US06.png) |
+| US07 | Média | Visualização de Mapa e Rotas Verdes | [US07.png](docs/diagramas/US07.png) |
+| US08 | Média | Motor de Roteirização Sustentável | [US08.png](docs/diagramas/US08.png) |
 | US09 | Média | Notificações "Passagem Limpa" | [US09.png](docs/diagramas/US09.png) |
 | US10 | Baixa | Barra de Progresso de Metas Semanais | [US10.png](docs/diagramas/US10.png) |
 | US11 | Baixa | Calculadora de Payback Operacional | [US11.png](docs/diagramas/US11.png) |
