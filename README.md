@@ -170,21 +170,21 @@ O backlog do projeto está organizado no quadro da equipe na disciplina, com car
 
 ### Sprint 1
 
-Coluna _Backlog (Sprint)_ no Trello: **US03**, **US06**, **US04**.
+Coluna _Backlog (Sprint)_ no Trello: **US05**, **US02**, **US03**.
 
-<img src="docs/images/sprint-01.png" alt="Backlog Sprint 1 — coluna Backlog (Sprint) com US03, US06, US04" width="440" />
+<img src="docs/images/sprint-01.png" alt="Backlog Sprint 1 — coluna Backlog (Sprint) com US05, US02, US03" width="440" />
 
 ### Sprint 2
 
-Coluna _Backlog (Sprint)_ no Trello: **US02**, **US05**.
+Coluna _Backlog (Sprint)_ no Trello: **US01**, **US04**.
 
-<img src="docs/images/sprint-02.png" alt="Backlog Sprint 2 — coluna Backlog (Sprint) com US02, US05" width="440" />
+<img src="docs/images/sprint-02.png" alt="Backlog Sprint 2 — coluna Backlog (Sprint) com US01, US04" width="440" />
 
 ### Sprint 3
 
-Coluna _Backlog (Sprint)_ no Trello: **US08**, **US07**, **US09**.
+Coluna _Backlog (Sprint)_ no Trello: **US06**, **US07**, **US08**, **US09**.
 
-<img src="docs/images/sprint-03.png" alt="Backlog Sprint 3 — coluna Backlog (Sprint) com US08, US07, US09" width="440" />
+<img src="docs/images/sprint-03.png" alt="Backlog Sprint 3 — coluna Backlog (Sprint) com US06, US07, US08, US09" width="440" />
 
 ### Sprint 4
 
