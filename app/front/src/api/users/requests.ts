@@ -1,0 +1,6 @@
+import { api } from "@/api/client";
+import type { ListUsersParams, ListUsersResponse } from "./types";
+
+export async function getUsersList(_params?: ListUsersParams): Promise<ListUsersResponse> {
+  return api.get("/api/users").json<ListUsersResponse>();
+}

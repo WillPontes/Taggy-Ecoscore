@@ -29,6 +29,13 @@ O projeto está dividido em 5 pilares estratégicos:
 - _Pilar 4:_ Conexão e Linguagem (UX Writing)
 - _Pilar 5:_ Vantagens de Negócio (Certificações)
 
+## Código (aplicação)
+
+O front (Vite + React) e a API (FastAPI) vivem em **`app/front`** e **`app/back`**. Para desenvolvimento, instalação e convenções de pastas, use os guias técnicos:
+
+- **[app/front/README.md](app/front/README.md)** — interface, arquitetura por features, como rodar o Vite.
+- **[app/back/README.md](app/back/README.md)** — API, Postgres com Docker Compose, Swagger, modelos e rotas.
+
 ---
 
 ## User Stories

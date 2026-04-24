@@ -1,0 +1,7 @@
+# Raiz do worktree: evitar segredos cometidos por engano
+.env
+.env.local
+
+# SO
+.DS_Store
+Thumbs.db
