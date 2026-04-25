@@ -1,6 +1,8 @@
-import { api } from "@/api/client";
+import { api } from "@/lib/http-client";
 import type { ListUsersParams, ListUsersResponse } from "./types";
 
-export async function getUsersList(_params?: ListUsersParams): Promise<ListUsersResponse> {
+export async function getUsersList(
+  _params?: ListUsersParams,
+): Promise<ListUsersResponse> {
   return api.get("/api/users").json<ListUsersResponse>();
 }
