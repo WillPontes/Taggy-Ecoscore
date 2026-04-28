@@ -5,6 +5,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import src.models  # noqa: F401
 
 engine = create_async_engine(os.environ["DATABASE_URL"], echo=False)
