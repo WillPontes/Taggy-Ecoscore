@@ -1,5 +1,7 @@
 # Motor de cálculo (CalcEngine) — especificação e código de referência
 
+**Visão geral (classes, métodos e relações):** [engine-visao-geral.md](engine-visao-geral.md).
+
 Este documento descreve o **motor de impacto por passagem** usado pelo produto Taggy (pedágio / estacionamento): estimativa de CO₂e evitado, água e papel poupadas, valor em R$, metáforas para UI (US02), comparação **com vs. sem tag** (US05) e **payback** opcional (US11). O texto alinha-se às premissas do desafio em [Premissas do desafio](../negocio/premissas-desafio.md) e às user stories em [user-stories.md](../produto/user-stories.md).
 
 **Objetivo:** dado um evento de passagem (tempo observado, contexto, veículo), produzir um **payload JSON** para dashboard, relatórios ESG e notificações.
@@ -19,10 +21,10 @@ O desenho cobre o **núcleo ESG + valor financeiro + orquestração** de evento.
 
 | Área | Cobertura | Notas |
 |------|-----------|--------|
-| US03 Combustível → CO₂e | Forte | Fatores por combustível, marcha lenta e surto de aceleração por categoria. |
+| US03 Combustível → CO₂e | Forte | Fatores por combustível, marcha lenta e consumo extra após paragem (modelado por categoria). |
 | US04 Papel / água | Forte | Ticket térmico evitado → CO₂ e litros de água (proxy do ciclo de vida). |
 | US02 Metáforas lúdicas | Forte | `ludic_metaphors` com **≥3** metáforas por eixo (água, papel, carbono), todas em `specs`. |
-| US05 Com vs. sem tag | Forte | Objeto `comparison` + desgaste de parada (`brake_wear_brl`) + combustível repartido (idle / aceleração). |
+| US05 Com vs. sem tag | Forte | Objeto `comparison` + desgaste por paragem na cabine de pedágio (`brake_wear_brl`) + combustível repartido (marcha lenta / pós-paragem). |
 | US06 Frota | Forte | `VehicleDatabase` (interno + API + fallback). |
 | US07 Tempo de vida | Apoio | `metadata.time_saved_sec` para agregar horas/dias na app. |
 | US09 Notificações | Apoio | Payload com `storytelling` por eixo e totais por passagem. |
@@ -31,7 +33,7 @@ O desenho cobre o **núcleo ESG + valor financeiro + orquestração** de evento.
 
 **Riscos e premissas (documentar sempre):**
 
-- **`calculate_avoided_acceleration_fuel`** devolve um volume **fixo por passagem** (um ciclo “parar na cabine + arrancar” evitado), **independente** do tempo poupado na fila — coerente com “um evento de surto evitado”, mas pode superestimar se a passagem for anómala.
+- **`calculate_avoided_acceleration_fuel`** devolve um volume **fixo por passagem** (modelo: **uma paragem na cabine de pedágio seguida de arranque** evitada), **independente** do tempo poupado na fila — coerente com um único “consumo extra ao reacelerar” evitado, mas pode superestimar se a passagem for anómala.
 - **`is_digital`** deve ser parâmetro quando houver ticket físico em estacionamento.
 - **`convert_from_co2`** usa `benchmarks` em `specs` (evitar “números mágicos” no código).
 
@@ -44,7 +46,7 @@ O desenho cobre o **núcleo ESG + valor financeiro + orquestração** de evento.
 | US02 | `get_ludic_metrics_by_axis`, chave `storytelling.by_axis`, `specs['ludic_metaphors']`. |
 | US03 | `calculate_emissions_from_fuel`, `emission_factors`, `idle_rates`, `accel_surge`. |
 | US04 | `calculate_paper_and_water_savings`, `paper_impact`. |
-| US05 | `financial` (idle/accel/freio), `comparison.without_tag` / `with_tag`. |
+| US05 | `financial` (marcha lenta / pós-paragem / travões), `comparison.without_tag` / `with_tag`. |
 | US06 | `VehicleDatabase.get_complete_vehicle_data`. |
 | US07 | `metadata.time_saved_sec`. |
 | US09 | Somatório ambiental + `storytelling` por passagem. |
@@ -57,7 +59,7 @@ O desenho cobre o **núcleo ESG + valor financeiro + orquestração** de evento.
 
 1. O **webhook** entrega tempo de passagem, placa, **UF da passagem** (`uf_passagem`, ex. onde está a praça ou o estacionamento) e contexto (`pedagio` / `estacionamento`).
 2. O **orquestrador** resolve veículo (`VehicleDatabase` → API Senatran quando necessário), injeta `specs` atuais (`OfficialSourceProvider`, preços já agregados por UF a partir do BigQuery) e chama `CalcEngine.process_transaction` com `uf_passagem`.
-3. A **engine** resolve o **preço por litro** para aquela UF e tipo de combustível, calcula R$, devolve **`metadata.pricing_snapshot`** (valor usado naquele momento) e o restante do payload; opcionalmente **payback** se o caller enviar acumulado + mensalidade.
+3. A **engine** determina o **preço em R$/litro** para aquela UF e tipo de combustível, calcula valores em R$, devolve **`metadata.pricing_snapshot`** (valor usado naquele momento) e o restante do payload; opcionalmente **payback** se o caller enviar acumulado + mensalidade.
 
 ```mermaid
 flowchart LR
@@ -97,7 +99,7 @@ Todas as chaves abaixo entram no dicionário injetado em `CalcEngine.specs`. Uni
 |-------|-------------|-------------------|----------------|
 | `emission_factors` | Fator CO₂e por litro (combustível) | kg CO₂e / L | `calculate_emissions_from_fuel` |
 | `idle_rates` | Consumo em marcha lenta | L / s | `calculate_avoided_idle_fuel`, `comparison` |
-| `accel_surge` | Litro extra de um surto “cabine” evitado | L por passagem, por categoria | `calculate_avoided_acceleration_fuel`, `comparison` |
+| `accel_surge` | Litros de consumo extra após paragem na cabine de pedágio (arranque evitado), por categoria | L por passagem, por categoria | `calculate_avoided_acceleration_fuel`, `comparison` |
 | `paper_impact` | `co2_per_ticket`, `water_per_ticket` | kg CO₂e/ticket; L/ticket | US04, `convert_to_co2` |
 | `ludic_factors` | Legado: árvore/telefone/café numéricos | ver defaults | `get_ludic_metrics` (retrocompat.) |
 | `ludic_metaphors` | Listas por eixo `carbon`, `water`, `paper` | ver sub-tabela | `get_ludic_metrics_by_axis` |
@@ -106,7 +108,7 @@ Todas as chaves abaixo entram no dicionário injetado em `CalcEngine.specs`. Uni
 | `fuel_prices_meta` | Metadados da última sincronização a partir do BigQuery | ex.: `as_of` (ISO), `aggregation` (ex. `median_by_uf_last_week`), `source`, opcional `default_uf` para fallback | cópia parcial em `metadata.pricing_snapshot` |
 | `fuel_prices` | *(Opcional / legado)* Preço nacional ou fallback único por `fuel_type` | R$ / L | usado só se a UF pedida não existir em `fuel_prices_by_uf` |
 | `maint_costs` | Outros micro-ganhos de manutenção genérica | R$ / passagem (por categoria) | `calculate_financial_savings` |
-| `brake_cost_per_stop_brl` | Custo atribuído a **uma parada tipo cabine** (freio + desgaste associado) | R$ / parada, por categoria | `brake_wear_brl` (US05) |
+| `brake_cost_per_stop_brl` | Custo atribuído a **uma paragem na cabine de pedágio** (travões + desgaste associado) | R$ / paragem, por categoria | `brake_wear_brl` (US05) |
 | `benchmarks` | Equivalências para `convert_from_co2` | kg CO₂e por unidade | `convert_from_co2` |
 
 **Formato de `ludic_metaphors` (US02):** cada eixo é uma lista com **pelo menos três** entradas. Campos:
@@ -193,7 +195,7 @@ class CalcEngine:
         return time_saved_sec * rate
 
     def calculate_avoided_acceleration_fuel(self, category: str) -> float:
-        """Litros do surto de aceleração pós-parada evitados (fixo por passagem)."""
+        """Litros de combustível do consumo extra ao acelerar após uma paragem (fixo por passagem)."""
         return float(self.specs["accel_surge"].get(category, 0.015))
 
     def calculate_paper_and_water_savings(self, is_digital: bool) -> Dict[str, float]:
@@ -240,7 +242,8 @@ class CalcEngine:
         stops_avoided: int = 1,
     ) -> Dict[str, Any]:
         """
-        Decompõe economia em marcha lenta vs. surto; freios por parada evitada; manutenção genérica.
+        Decompõe economia em marcha lenta vs. consumo extra após paragem; desgaste de travões
+        por paragem na cabine de pedágio evitada; manutenção genérica.
         fuel_price_brl_per_liter: valor já resolvido (UF + tipo) para este cálculo — deve coincidir com metadata.pricing_snapshot.
         """
         price = float(fuel_price_brl_per_liter)
@@ -269,7 +272,7 @@ class CalcEngine:
         is_digital: bool,
         fuel_price_brl_per_liter: float,
     ) -> Dict[str, Any]:
-        """US05: cenário sem tag (espera plena + surto) vs. com tag (tempo real + sem surto). Mesmo preço/litro nos dois ramos."""
+        """US05: sem tag (espera plena + consumo extra após paragem) vs. com tag (tempo real, sem esse extra). Mesmo R$/litro nos dois ramos."""
         cat = vehicle_data["category"]
         fuel_type = vehicle_data["fuel_type"]
         rate = self.specs["idle_rates"].get(cat, self.specs["idle_rates"]["leve"])
@@ -279,7 +282,7 @@ class CalcEngine:
         without_total = without_idle + accel
 
         with_idle = max(0, real_time_sec) * rate
-        with_total = with_idle  # passagem fluida: sem segundo surto de cabine
+        with_total = with_idle  # passagem fluida: sem segundo pico de consumo após paragem
 
         paper_without = self.calculate_paper_and_water_savings(is_digital=False)
         paper_with = self.calculate_paper_and_water_savings(is_digital=is_digital)
@@ -441,7 +444,7 @@ class CalcEngine:
             "price_source": meta.get("source", "basedosdados:br_anp_precos_combustiveis"),
         }
 
-        stops_avoided = 1  # uma parada tipo cabine evitada nesta passagem com tag
+        stops_avoided = 1  # uma paragem na cabine de pedágio evitada nesta passagem com tag
 
         financial = self.calculate_financial_savings(
             idle_liters,
@@ -721,7 +724,7 @@ class TransactionOrchestrator:
 - **Senatran / Serpro:** path, headers e corpo exatos da operação `consultarVeiculoPorPlaca` devem seguir o OpenAPI do estaleiro; o mapeamento `_map_external_to_internal` deve ser atualizado quando o schema for fixado.
 - **BigQuery:** credenciais GCP, agregação por UF e colunas da tabela `br_anp_precos_combustiveis` ficam na implementação do `_sync_fuel_prices_from_bq`, não neste documento.
 - **Agregação mensal** e histórico de payback ficam na **camada de serviço ou app**; o motor expõe `calculate_payback_snapshot` e o payload opcional.
-- **`build_comparison`:** o ramo financeiro usa o mesmo `fuel_price_brl_per_liter` que a passagem; valores são **estimativas** dependentes de `baselines` e `brake_cost_per_stop_brl`.
+- **`build_comparison`:** o ramo financeiro usa o mesmo `fuel_price_brl_per_liter` que a passagem; valores são **estimativas** dependentes de `baselines`, de `brake_cost_per_stop_brl` (por paragem na cabine de pedágio) e de `accel_surge`.
 
 ---
 
