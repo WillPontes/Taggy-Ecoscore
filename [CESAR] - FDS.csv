@@ -1,0 +1,50 @@
+﻿"Card Name","Card Description","Labels","Members","Due Date","Start Date","List Name"
+"AT01-US05: Endpoint de Cadastro de Veículos [Backend]","**Descrição:**
+Criar rota `POST /veiculos` e lógica para salvar Placa, Modelo e Combustível em um arquivo JSON ou Banco de Dados.","Sprint 1 (black_light),US05 (purple_light)","","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US05: Formulário de Cadastro de Frota [Frontend]","**Descrição:**
+Desenviar interface com inputs validados e integração via Axios para salvar novos veículos no sistema.","Sprint 1 (black_light),US05 (purple_light)","","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT03-US05: Validação de Duplicidade de Tag [Backend]","**Descrição:**
+Implementar verificação no Controller para impedir o cadastro de uma Tag ou Placa que já exista na base de dados.","Sprint 1 (black_light),US05 (purple_light)","","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US02: Visualização de Impacto de Carbono [Frontend]","**Descrição:**
+Criar componente de resumo que consome a API de cálculos e exibe o total de emissões evitadas para o usuário.","Sprint 1 (black_light),US02 (purple)","","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US03: Contador de Transações Digitais [Backend]","**Descrição:**
+
+Implementar lógica que incrementa o contador de "tickets evitados" a cada passagem processada pela Tag.","Sprint 1 (black_light),US03 (purple_dark)","","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US01: Utilitário de Metáforas Visuais [Frontend]","**Descrição:**
+Criar lógica que divide o total de CO2/Água por índices lúdicos (ex: 15kg CO2 = 1 árvore) para gerar as metáforas.","Sprint 2 (black),US01 (blue_light)","","2026-05-17T21:00:00.000Z","2026-05-11T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US01: Galeria de Cards de Impacto [Frontend]","**Descrição:**
+Renderizar componentes visuais (ícones + textos) que mudam conforme a configuração de metáfora escolhida pelo usuário.","Sprint 2 (black),US01 (blue_light)","","2026-05-17T21:00:00.000Z","2026-05-11T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US04: Rota de Análise Financeira (ROI) [Backend]","**Descrição:**
+Criar endpoint que calcula a diferença entre o custo operacional estimado (espera/marcha lenta) e o custo com uso da Taggy.","Sprint 2 (black),US04 (blue)","","2026-05-17T21:00:00.000Z","2026-05-11T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US04: Gráficos de Performance Econômica [Frontend]","**Descrição:**
+Integrar biblioteca de gráficos (Recharts/Chart.js) para exibir o delta de economia em Reais e Litros.","Sprint 2 (black),US04 (blue)","","2026-05-17T21:00:00.000Z","2026-05-11T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US06: Cálculo de Tempo Economizado [Backend]","**Descrição:**
+Armazenar o tempo médio de cabines manuais e calcular o ganho temporal acumulado a cada transação da Tag.","Sprint 3 (black_dark),US06 (blue_dark)","","2026-05-31T21:00:00.000Z","2026-05-18T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US06: Widget de Tempo em Tempo Real [Frontend]","**Descrição:**
+Desenvolver placar reativo que formata minutos totais em "Dias/Horas/Minutos" de vida ganhos pelo motorista.","Sprint 3 (black_dark),US06 (blue_dark)","","2026-05-31T21:00:00.000Z","2026-05-18T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US07: Integração com SDK de Mapas [Frontend]","**Descrição:**
+Configurar Leaflet, Google Maps ou Mapbox no Vite para exibir o mapa interativo de rotas.","Sprint 3 (black_dark),US07 (green_light)","","2026-05-31T21:00:00.000Z","2026-05-18T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US08: Algoritmo de Sugestão de Rotas Verdes [Backend]","**Descrição:**
+Criar endpoint que retorna coordenadas de cancelas integradas e calcula a rota com menor pegada de carbono.","Sprint 3 (black_dark),US08 (green)","","2026-05-31T21:00:00.000Z","2026-05-18T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US09: Feedback de Notificação Local (Push) [Frontend]","**Descrição:**
+Implementar sistema de "Toasts" ou banners de aviso que disparam assim que uma transação é concluída.","Sprint 3 (black_dark),US09 (green_dark)","","2026-05-31T21:00:00.000Z","2026-05-18T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US09: Gerador de Mensagens Dinâmicas [Backend]","**Descrição:**
+Criar lógica que monta frases personalizadas (ex: "Você salvou X litros agora!") para serem enviadas via API.","Sprint 3 (black_dark),US09 (green_dark)","","2026-05-31T21:00:00.000Z","2026-05-18T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US10: Gerenciamento de Metas Semanais [Backend]","**Descrição:**
+Criar rotas para definir e consultar o status das metas de sustentabilidade por usuário ou frota.","Sprint 4 (black_dark),US10 (pink_light)","","2026-06-07T21:00:00.000Z","2026-06-01T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US10: Componente de Progresso Dinâmico [Frontend]","**Descrição:**
+Criar barra de progresso visual que atualiza sua largura (%) baseada no estado de conclusão das metas semanais.","Sprint 4 (black_dark),US10 (pink_light)","","2026-06-07T21:00:00.000Z","2026-06-01T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT01-US11: Lógica de Ponto de Equilíbrio (Break-even) [Backend]","**Descrição:**
+Desenvolver cálculo que subtrai o valor da assinatura da tag da economia total gerada para validar o lucro.","Sprint 4 (black_dark),US11 (pink)","","2026-06-07T21:00:00.000Z","2026-06-01T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02-US11: Status de Rentabilidade da Tag [Frontend]","**Descrição:**
+Criar sinalização visual (badges coloridos) que indica se a tag já se pagou ("Tag Paga") no período atual.","Sprint 4 (black_dark),US11 (pink)","","2026-06-07T21:00:00.000Z","2026-06-01T11:00:00.000Z","Backlog Sprint (Desenvolvimento)"
+"AT02: Configuração do JSON Server","**Descrição:**
+Deploy dos ambientes para facilitar testes.","Sprint 2 (black)","igorphillipeamorimrochaaragao","2026-05-17T21:00:00.000Z","2026-05-11T11:00:00.000Z","Em andamento"
+"AT02: Setup de Ambientes","**Descrição:**
+Deploy dos ambientes para facilitar testes.","Sprint 2 (black)","igorphillipeamorimrochaaragao","2026-05-17T21:00:00.000Z","2026-05-11T11:00:00.000Z","Em andamento"
+"AT01-US02: Engine de Cálculo de CO2 [Backend]","**Descrição:**
+Criar função utilitária (Service) que aplica os coeficientes do GHG Protocol sobre o volume de combustível economizado.","Sprint 1 (black_light),US02 (purple)","lucasgabrielcardososouza","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Em andamento"
+"AT02-US03: Conversor de Papel para Recursos Naturais [Backend/Frontend]","**Descrição:**
+Calcular a economia de água e árvores (baseada em tickets) e exibir os indicadores no dashboard ambiental.","Sprint 1 (black_light),US03 (purple_dark)","lucasgabrielcardososouza","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Em andamento"
+"AT01: Criação dos Boilerplates (Node/Vite)","**Descrição:**
+Inicializar projeto Node.js com Express e projeto Vite com React.","Sprint 1 (black_light)","igorphillipeamorimrochaaragao","2026-05-10T21:00:00.000Z","2026-04-27T11:00:00.000Z","Concluído 🎉"
