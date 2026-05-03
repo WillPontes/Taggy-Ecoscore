@@ -1,6 +1,6 @@
 # User stories (CCC)
 
-Numeração **US01–US11** alinhada ao [README](../README.md) (prioridades, mapa de mockups e diagramas). Os cartões no Trello podem usar rótulos antigos; o link aponta para o mesmo requisito.
+Numeração **US01–US11** alinhada ao [README](../../README.md) (prioridades, mapa de mockups e diagramas). Os cartões no Trello podem usar rótulos antigos; o link aponta para o mesmo requisito.
 
 ## Prioridade alta
 
