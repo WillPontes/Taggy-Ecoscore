@@ -1,6 +1,8 @@
 # Motor de cálculo — visão geral (API do motor)
 
-**Índice de API:** assinaturas e comportamento esperado de cada método (docstring). **Implementação, fórmulas, dicionário completo de `technical_specs` e código executável** estão em [`engine-calculo.md`](engine-calculo.md) (§3 fluxo, §4 specs, §6 código, §7 limitações). Premissas de negócio: [Premissas do desafio](../negocio/premissas-desafio.md); user stories: [user-stories.md](../produto/user-stories.md).
+**Índice da pasta** (ordem de leitura, premissas e user stories): [README.md](README.md).
+
+**Este ficheiro:** fluxo em texto, diagramas Mermaid e **contratos de API** (stubs com `pass` são intencionais). **Implementação** (fluxo §3, dicionário §4, código §6, limitações §7): [`engine-calculo.md`](engine-calculo.md). **Exemplo e FAQ:** [`guia-desenvolvedor.md`](guia-desenvolvedor.md).
 
 ---
 
@@ -16,11 +18,7 @@
 
 ## Fluxo sequencial (diagrama)
 
-Fluxo de **chamadas** (não é UML activity completo), alinhado ao pseudocódigo da secção 6 de [`engine-calculo.md`](engine-calculo.md).
-
-Na **orquestração**, o ramo do **veículo** (placa → `vehicle_data`) é um fluxo à parte: resolve BD interno ou API Senatran e **volta** ao `handle_tag_event` antes dos specs e da `CalcEngine`. O passo **6** chama `OfficialSourceProvider.get_all_specs` — o **diagrama da classe** `OfficialSourceProvider` está na subsecção seguinte (sincronização BigQuery / MCTI → BD, depois leitura na passagem).
-
-Cada nó no primeiro diagrama usa **ID legível** (`etapaNN_...`) e o **mesmo padrão de legenda** que o [Fluxo em texto](#fluxo-em-texto): número, **`Classe.método`** (ou artefacto) na primeira linha, descrição na segunda — alinhado às bullets das linhas 8–13.
+Fluxo de **chamadas** (não é UML completo), alinhado ao [§6 de engine-calculo.md](engine-calculo.md#6-código-de-referência-python). O ramo **veículo** (placa → `vehicle_data`) resolve BD → Senatran → fallback e **volta** ao `handle_tag_event` antes de `get_all_specs` e `process_transaction`. O diagrama seguinte da classe `OfficialSourceProvider` separa **sync** (job) da **leitura** na passagem.
 
 ### Visão geral: webhook até ao payload
 
@@ -80,6 +78,8 @@ flowchart TD
 
 Dentro de `build_comparison`, o pseudocódigo reutiliza `calculate_paper_and_water_savings`, `calculate_emissions_from_fuel` e `calculate_financial_savings` para os dois cenários; ver implementação em [`engine-calculo.md`](engine-calculo.md) §6.
 
+> **Mapeamento de combustível / API Senatran:** comportamento e limitações de `_map_external_to_internal` → [§7 Limitações](engine-calculo.md#7-limitações).
+
 ### Diagrama da classe `OfficialSourceProvider`
 
 A **sincronização** (BigQuery ANP, fatores MCTI) **não** ocorre em cada webhook na referência §6: costuma ser **job agendado ou arranque** que chama `sync_all_sources` e **popula a BD**. Em cada passagem, `get_all_specs` apenas **lê** a BD (ou usa `_fallback_technical_specs` se ainda não houver documento persistido).
@@ -117,8 +117,6 @@ flowchart TD
 
 Constante e URLs da tabela ANP: secção [URLs e fontes de dados](#urls-e-fontes-de-dados) deste ficheiro e secção 4 de [`engine-calculo.md`](engine-calculo.md).
 
-**Nota sobre `convert_to_co2`:** o método existe na `CalcEngine` para unificar entradas heterogéneas (água, papel, combustível) num pivô em kg CO₂e, mas o **pseudocódigo de referência** de `process_transaction` em `engine-calculo.md` §6 obtém o total da passagem com `calculate_emissions_from_fuel` mais o `co2` devolvido por `calculate_paper_and_water_savings`, **sem** chamar `convert_to_co2` nesse caminho.
-
 ---
 
 ## URLs e fontes de dados
@@ -131,6 +129,8 @@ Constante e URLs da tabela ANP: secção [URLs e fontes de dados](#urls-e-fontes
 
 ## `TransactionOrchestrator`
 
+> **Stubs — apenas contratos de API.** Os corpos dos métodos abaixo são intencionalmente `pass`. A implementação completa está em [`engine-calculo.md §6 Bloco 4`](engine-calculo.md#bloco-4--transactionorchestrator).
+
 Ponto de entrada após o webhook: liga `VehicleDatabase`, `OfficialSourceProvider` e `CalcEngine` (sem lógica de cálculo).
 
 ```python
@@ -138,11 +138,11 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-# CalcEngine, VehicleDatabase, OfficialSourceProvider — ver engine-calculo.md §6
+# CalcEngine, VehicleDatabase, OfficialSourceProvider — implementação em engine-calculo.md §6
 
 
 class TransactionOrchestrator:
-    """Coordena webhook → veículo → specs → CalcEngine."""
+    """Coordena webhook → veículo → specs → CalcEngine. Implementação: engine-calculo.md §6 Bloco 4."""
 
     def __init__(self, engine: CalcEngine, vehicle_db: VehicleDatabase, sources: OfficialSourceProvider) -> None:
         """Injeta engine, base de veículos e provider de specs oficiais."""
@@ -160,6 +160,8 @@ class TransactionOrchestrator:
 
 ## `VehicleDatabase`
 
+> **Stubs — apenas contratos de API.** Implementação completa em [`engine-calculo.md §6 Bloco 2`](engine-calculo.md#bloco-2--vehicledatabase).
+
 Resolve `vehicle_data` no contrato da `CalcEngine` (`plate`, `category`, `fuel_type`, `model`, …). Contrato detalhado: `engine-calculo.md`.
 
 ```python
@@ -167,7 +169,7 @@ from typing import Any, Dict
 
 
 class VehicleDatabase:
-    """Frota interna (BD) + API Senatran + perfil genérico (US06)."""
+    """Frota interna (BD) + API Senatran + perfil genérico (US06). Implementação: engine-calculo.md §6 Bloco 2."""
 
     def __init__(self, db_connection: Any, api_credentials: Any) -> None:
         """Guarda acesso à BD interna e credenciais Serpro."""
@@ -178,13 +180,19 @@ class VehicleDatabase:
         pass
 
     def _map_external_to_internal(self, plate: str, raw: Dict[str, Any]) -> Dict[str, Any]:
-        """Traduz JSON da API Senatran para o dicionário interno esperado pela engine."""
+        """
+        Traduz JSON da API Senatran para o dicionário interno esperado pela engine.
+        Mapeamento: diesel → diesel_s10; etanol/alcool puro → etanol; flex/demais → gasolina_c.
+        Ver engine-calculo.md §6 Bloco 2 e §7 Limitações (flex, GNV, elétrico).
+        """
         pass
 ```
 
 ---
 
 ## `_fallback_technical_specs` e `OfficialSourceProvider`
+
+> **Stubs — apenas contratos de API.** Implementação completa em [`engine-calculo.md §6 Bloco 3`](engine-calculo.md#bloco-3--officialsourceprovider-e-_fallback_technical_specs).
 
 Fornecem `technical_specs` para `self.specs` na `CalcEngine`. Fallback: defaults quando a BD ainda não tem specs (chaves e exemplos na §4 de `engine-calculo.md`).
 
@@ -200,7 +208,7 @@ def _fallback_technical_specs() -> Dict[str, Any]:
 
 
 class OfficialSourceProvider:
-    """Sincroniza fontes oficiais e expõe get_all_specs para a orquestração."""
+    """Sincroniza fontes oficiais e expõe get_all_specs para a orquestração. Implementação: engine-calculo.md §6 Bloco 3."""
 
     def __init__(self, db: Any) -> None:
         """Referência à camada de persistência dos technical_specs."""
@@ -230,6 +238,8 @@ class OfficialSourceProvider:
 
 ## `_default_ludic_metaphors` e `CalcEngine`
 
+> **Stubs — apenas contratos de API.** Implementação completa em [`engine-calculo.md §6 Bloco 1`](engine-calculo.md#bloco-1--calcengine).
+
 Núcleo do payload da passagem. `get_ludic_metrics_by_axis` usa `_default_ludic_metaphors()` quando `specs` não define `ludic_metaphors`.
 
 ```python
@@ -244,23 +254,31 @@ def _default_ludic_metaphors() -> Dict[str, List[Dict[str, Any]]]:
 
 
 class CalcEngine:
-    """Motor de impacto ambiental/financeiro e storytelling por passagem."""
+    """Motor de impacto ambiental/financeiro e storytelling por passagem. Implementação: engine-calculo.md §6 Bloco 1."""
 
     def __init__(self, technical_specs: Dict[str, Any]) -> None:
         """Atribui self.specs (contrato technical_specs na §4 de engine-calculo.md)."""
         pass
 
-    # --- Conversão ---
+    # --- Conversão universal (pivo CO₂e) ---
 
     def convert_to_co2(self, value: float, unit: str) -> float:
         """
-        Unifica entradas (água, papel, combustível) em kg CO₂e.
+        Normaliza qualquer unidade de entrada para kg CO₂e (pivo).
+        Ponto de extensão: para suportar nova unidade de entrada, adicione um branch aqui.
         unit: water_liters, paper_tickets, fuel_liters_<tipo>.
+        Não é chamado em process_transaction (que calcula o pivo diretamente); é o
+        contrato público para chamadores externos que normalizam unidades heterogêneas.
         """
         pass
 
     def convert_from_co2(self, co2_kg: float, target_unit: str) -> float:
-        """Converte kg CO₂e para unidade simbólica (trees, water, smartphone, km_driven, burgers, …)."""
+        """
+        Converte kg CO₂e para unidade simbólica (pivo inverso).
+        Ponto de extensão: para adicionar/remover metáfora de saída, altere specs['benchmarks']
+        e acrescente/remova uma chave — sem mudar a lógica de cálculo principal.
+        target_unit: trees, water, smartphone, km_driven, burgers.
+        """
         pass
 
     # --- Ambiental ---
@@ -316,6 +334,8 @@ class CalcEngine:
         """
         US05: sem tag (espera plena + consumo extra após paragem) vs. com tag (tempo real,
         sem esse consumo extra modelado); mesmo R$/litro nos dois ramos.
+        Internamente chama calculate_financial_savings para AMBOS os cenários como modelo
+        de custo de cada ramo — o 'delta.estimated_brl' é a economia real resultante.
         """
         pass
 
@@ -383,5 +403,8 @@ Contratos de campos: [`engine-calculo.md`](engine-calculo.md).
 
 ## Documentação complementar
 
-- **Código de referência executável e alinhamento fino:** [`engine-calculo.md`](engine-calculo.md), §6 (e §3–§7 em geral).
+- **Índice da pasta e ordem de leitura:** [README.md](README.md).
+- **Código de referência e spec fino:** [`engine-calculo.md`](engine-calculo.md) (§3–§7, código §6).
+- **Guia com exemplo e FAQ:** [`guia-desenvolvedor.md`](guia-desenvolvedor.md).
+- **Revisão US, TODOs §6, melhorias conhecidas:** [`engine-debitos-e-backlog.md`](engine-debitos-e-backlog.md).
 - Em caso de divergência entre este índice e o spec, prevalece `engine-calculo.md` até alinhamento explícito.
