@@ -53,28 +53,74 @@ Guia prático: **webhook → payload**, exemplo JSON e FAQ. Índice da pasta, or
 
 **Código:** [engine-calculo.md §6 Bloco 3](engine-calculo.md#bloco-3--officialsourceprovider-e-_fallback_technical_specs).
 
-**O que verificar:** presença das chaves usadas pelo motor — ver [engine-calculo.md — secção 4 (Dicionário de `technical_specs`)](engine-calculo.md#4-dicionário-de-technical_specs-e-get_all_specs).
+**O que verificar:** presença das chaves usadas pelo motor — ver [engine-calculo.md — seção 4 (Dicionário de `technical_specs`)](engine-calculo.md#4-dicionário-de-technical_specs-e-get_all_specs).
 
 ---
 
 ### Etapas seguintes — `CalcEngine.process_transaction` (§6 Bloco 1)
 
-Tudo após as etapas 1–3 ocorre em **`process_transaction`**: baseline de tempo, litros (marcha lenta + surto), papel/água, CO₂e, preço por UF, `pricing_snapshot`, financeiro, `comparison`, metáforas e `payback` opcional. Fórmulas e ordem exata no código de referência.
+Tudo após as etapas 1–3 ocorre em **`process_transaction`**: baseline de tempo, litros (marcha lenta + aceleração evitada), papel/água, CO₂e, preço por UF, `pricing_snapshot`, financeiro, `comparison`, metáforas e `payback` opcional. Fórmulas e ordem exata no código de referência.
 
 | Ordem (típica) | Método | Resumo |
 |----------------|--------|--------|
 | 1 | *(lógica inline em `process_transaction`)* | `time_saved` a partir de `baselines` e tempo real. |
 | 2 | `calculate_avoided_idle_fuel` | Litros não queimados em marcha lenta no tempo poupado. |
-| 3 | `calculate_avoided_acceleration_fuel` | Litros extra evitados (surto pós-paragem; valor fixo por categoria nos specs). |
+| 3 | `calculate_avoided_acceleration_fuel` | Volume extra de combustível evitado ao não fazer parada na cabine de pedágio (valor fixo por passagem, por categoria). |
 | 4 | `calculate_paper_and_water_savings` | CO₂e, água e tickets de papel se `is_digital`. |
 | 5 | `calculate_emissions_from_fuel` | Litros × fator de emissão por `fuel_type`. |
 | 6 | `resolve_fuel_price_brl_per_liter` | R$/L por UF com fallbacks; alimenta `metadata.pricing_snapshot`. |
 | 7 | `calculate_financial_savings` | Combustível, freio, micro-manutenção em R$. |
 | 8 | `build_comparison` | Cenários com vs. sem tag e deltas. |
-| 9 | `get_ludic_metrics` / `get_ludic_metrics_by_axis` | Metáforas para UI (legado e por eixo). |
+| 9 | `get_ludic_metrics` / `get_ludic_metrics_by_axis` | Metáforas para UI: versão antiga (`legacy`) e por eixo (`by_axis`). |
 | 10 | `calculate_payback_snapshot` | Só se o webhook trouxer o bloco `payback`. |
 
 **Semântica útil:** em `build_comparison`, `calculate_financial_savings` entra nos dois ramos como modelo de custo por cenário; o significado de `delta.estimated_brl` vs. `financial.total_savings_brl` está no [FAQ](#perguntas-frequentes) abaixo.
+
+---
+
+## Como revisar a engine — roteiro para dev iniciante
+
+Este roteiro guia qualquer desenvolvedor do time na revisão do código da engine, mesmo sem ter escrito o código original.
+
+### Passo 1 — Entenda o fluxo geral (`engine-visao-geral.md`)
+
+Abra [engine-visao-geral.md](engine-visao-geral.md) e leia o fluxograma **"Visão geral: webhook até o payload"**. Cada nó do diagrama corresponde a um método — os nomes no diagrama são os mesmos do código. Confirme que a sequência faz sentido: **veículo resolvido → specs carregados → engine calcula → payload montado**.
+
+> **Checkpoint:** o nó de veículo (etapas 2–5) é resolvido _antes_ de chamar `get_all_specs` e `process_transaction`. Se vir alguma implementação que inverta essa ordem, é um bug.
+
+### Passo 2 — Confira as assinaturas dos métodos no mesmo arquivo
+
+As seções `TransactionOrchestrator`, `VehicleDatabase`, `OfficialSourceProvider` e `CalcEngine` no [engine-visao-geral.md](engine-visao-geral.md) mostram os **métodos com corpo `pass`** — ou seja, mostram o que cada método recebe, o que retorna e o que não faz, sem a implementação.
+
+> **Checkpoint:** `handle_tag_event` não calcula nada — só orquestra. Qualquer lógica de cálculo nele é suspeita. `process_transaction` é quem coordena os cálculos internos.
+
+### Passo 3 — Verifique os cálculos em `engine-calculo.md §6 Bloco 1`
+
+Abra [engine-calculo.md §6 Bloco 1](engine-calculo.md#bloco-1--calcengine). Para cada método abaixo, leia a implementação e confirme que ela faz exatamente o descrito:
+
+| Método | O que deve fazer | O que checar no código |
+|--------|-----------------|----------------------|
+| `calculate_avoided_idle_fuel` | `time_saved_sec × idle_rate[category]` (litros) | usa `specs["idle_rates"][category]` — sem constante numérica hardcoded |
+| `calculate_avoided_acceleration_fuel` | retorna `specs["accel_surge"][category]` — valor fixo por passagem | **não** depende de tempo; só da categoria do veículo |
+| `calculate_emissions_from_fuel` | `liters × emission_factors[fuel_type]` → kg CO₂e | fator vem de `specs["emission_factors"]`; se o tipo não existe, cai no fallback 2.15 |
+| `calculate_paper_and_water_savings` | se `is_digital=False` retorna zeros; se `True` usa `specs["paper_impact"]` | confirmar que `is_digital=False` retorna `{"co2": 0.0, "water": 0.0, "paper_tickets": 0.0}` |
+| `resolve_fuel_price_brl_per_liter` | UF pedida → `fuel_prices_by_uf` → `default_uf` → `fuel_prices` → 5.80 | cadeia de 4 fallbacks; resultado inclui `uf_applied` (pode diferir da UF pedida) |
+| `calculate_financial_savings` | soma `idle_brl + accel_brl + brake_brl + maint` | `brake_brl = specs["brake_cost_per_stop_brl"][category] × stops_avoided` |
+| `build_comparison` | calcula custo dos dois cenários e subtrai para obter o delta | cenário "com tag": `accel_liters=0.0` e `stops_with=0` quando `is_digital=True` |
+| `get_ludic_metrics_by_axis` | `value = total ÷ fator_da_unidade` para cada metáfora | cada eixo tem ≥ 3 entradas; se `specs["ludic_metaphors"]` não existir, usa `_default_ludic_metaphors()` |
+| `calculate_payback_snapshot` | `net_brl = accumulated - fee × months`; `"tag_paga"` se `net_brl >= 0` | é `@staticmethod` — pode ser chamado sem instanciar `CalcEngine` |
+| `process_transaction` | chama todos os métodos acima em ordem e monta o dict final | `payback` só aparece no retorno se o input trouxer o bloco `payback` |
+
+### Passo 4 — Cruzamento com o dicionário de specs (`engine-calculo.md §4`)
+
+Abra [§4 Dicionário de technical_specs](engine-calculo.md#4-dicionário-de-technical_specs-e-get_all_specs). Para cada chave usada nos métodos do Passo 3, confirme que:
+
+- A chave existe na tabela do §4.
+- A unidade bate com o uso no código (ex.: `idle_rates` em L/s, `emission_factors` em kg CO₂e/L, `brake_cost_per_stop_brl` em R$/parada).
+
+> **Checkpoint final:** rode o exemplo completo da seção abaixo com os valores de fallback e confira se os números conferem com a tabela de rastreabilidade. Se os valores mudaram, os specs foram atualizados — verifique o `fuel_prices_meta.as_of` no banco.
+
+Para registrar sua revisão de cada método, use a tabela em [engine-revisao-funcoes.md](engine-revisao-funcoes.md).
 
 ---
 
@@ -178,7 +224,7 @@ O dicionário `technical_specs` é sincronizado periodicamente (job agendado) a 
 ## Referências
 
 - [README.md](README.md) — índice e ordem de leitura da pasta `tecnico/`
-- [engine-visao-geral.md](engine-visao-geral.md) — fluxo, diagramas, contratos (stubs)
+- [engine-visao-geral.md](engine-visao-geral.md) — fluxo, diagramas, assinaturas dos métodos (sem implementação)
 - [engine-calculo.md](engine-calculo.md) — specs, código §6, §7 Limitações
 - [engine-debitos-e-backlog.md](engine-debitos-e-backlog.md) — revisão US, TODOs §6, melhorias conhecidas
 - [../negocio/premissas-desafio.md](../negocio/premissas-desafio.md) — premissas do desafio ESG

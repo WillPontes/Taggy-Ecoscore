@@ -2,7 +2,7 @@
 
 **Índice da pasta** (ordem de leitura, premissas e user stories): [README.md](README.md).
 
-**Este ficheiro:** fluxo em texto, diagramas Mermaid e **contratos de API** (stubs com `pass` são intencionais). **Implementação** (fluxo §3, dicionário §4, código §6, limitações §7): [`engine-calculo.md`](engine-calculo.md). **Exemplo e FAQ:** [`guia-desenvolvedor.md`](guia-desenvolvedor.md).
+**Este arquivo:** fluxo em texto, diagramas Mermaid e **assinaturas dos métodos** (corpo `pass` é intencional — a implementação está em engine-calculo.md). **Implementação** (fluxo §3, dicionário §4, código §6, limitações §7): [`engine-calculo.md`](engine-calculo.md). **Exemplo e FAQ:** [`guia-desenvolvedor.md`](guia-desenvolvedor.md).
 
 ---
 
@@ -10,15 +10,15 @@
 
 1. O **webhook** envia tempo de passagem, placa, UF (`uf_passagem` ou `uf`), contexto (`pedagio` / `estacionamento`), `is_digital` e opcionalmente `payback`.
 2. **`TransactionOrchestrator.handle_tag_event`** lê o webhook, obtém dados do veículo, atribui `engine.specs` via fonte oficial e chama a engine.
-3. **`VehicleDatabase.get_complete_vehicle_data`** devolve `vehicle_data` (BD interno → Senatran → perfil genérico).
-4. **`OfficialSourceProvider.get_all_specs`** devolve `technical_specs` persistidos ou `_fallback_technical_specs()`.
-5. **`CalcEngine.process_transaction`** devolve o payload (`environmental`, `financial`, `comparison`, `storytelling`, `metadata`, `payback` opcional).
+3. **`VehicleDatabase.get_complete_vehicle_data`** retorna `vehicle_data` (banco de dados interno → Senatran → perfil genérico).
+4. **`OfficialSourceProvider.get_all_specs`** retorna `technical_specs` persistidos ou `_fallback_technical_specs()`.
+5. **`CalcEngine.process_transaction`** retorna o payload (`environmental`, `financial`, `comparison`, `storytelling`, `metadata`, `payback` opcional).
 
 ---
 
 ## Fluxo sequencial (diagrama)
 
-Fluxo de **chamadas** (não é UML completo), alinhado ao [§6 de engine-calculo.md](engine-calculo.md#6-código-de-referência-python). O ramo **veículo** (placa → `vehicle_data`) resolve BD → Senatran → fallback e **volta** ao `handle_tag_event` antes de `get_all_specs` e `process_transaction`. O diagrama seguinte da classe `OfficialSourceProvider` separa **sync** (job) da **leitura** na passagem.
+Fluxo de chamadas entre os métodos, alinhado ao [§6 de engine-calculo.md](engine-calculo.md#6-código-de-referência-python). O ramo **veículo** (placa → `vehicle_data`) resolve banco de dados → Senatran → fallback antes de chamar `get_all_specs` e `process_transaction`. O diagrama seguinte mostra como `OfficialSourceProvider` separa a sincronização (job agendado) da leitura dos specs em cada passagem.
 
 ### Visão geral: webhook até ao payload
 
@@ -47,7 +47,7 @@ flowchart TD
 
   subgraph subgraphCalcEngine [Processamento da CalcEngine]
     direction TB
-    etapa08_calcEngineProcessTransaction["<b>8. Coordenação dos cálculos da passagem</b><br/>process_transaction recebe tempo, veículo, UF e contexto e coordena todos os sub-cálculos, devolvendo o payload completo."] --> etapa09_baselineETempoPoupado["<b>9. Cálculo do tempo poupado</b><br/>Lê avg_wait_sec dos specs para o contexto (pedágio ou estacionamento) e calcula o tempo que o motorista economizou na fila."]
+    etapa08_calcEngineProcessTransaction["<b>8. Coordenação dos cálculos da passagem</b><br/>process_transaction recebe tempo, veículo, UF e contexto e coordena todos os sub-cálculos, retornando o payload completo."] --> etapa09_baselineETempoPoupado["<b>9. Cálculo do tempo poupado</b><br/>Lê avg_wait_sec dos specs para o contexto (pedágio ou estacionamento) e calcula o tempo que o motorista economizou na fila."]
     etapa09_baselineETempoPoupado --> etapa10_marchaLenta["<b>10. Combustível economizado em marcha lenta</b><br/>calculate_avoided_idle_fuel estima os litros que o motor deixou de queimar em ralenti durante o tempo poupado na fila."]
     etapa10_marchaLenta --> etapa11_surtoAceleracao["<b>11. Combustível economizado na aceleração</b><br/>calculate_avoided_acceleration_fuel retorna o volume extra evitado por não parar e acelerar na cabine — valor fixo por categoria nos specs."]
     etapa11_surtoAceleracao --> etapa12_somaLitrosEconomizados["<b>12. Total de litros economizados</b><br/>Soma marcha lenta (etapa 10) e aceleração evitada (etapa 11): volume total de combustível não queimado na passagem."]
@@ -58,7 +58,7 @@ flowchart TD
     etapa16_cotacaoPorUf --> etapa17_snapshotPrecosMetadata["<b>17. Registro de auditoria do preço aplicado</b><br/>Monta o pricing_snapshot: preço usado, UF aplicada, moeda (BRL) e fonte — para rastreabilidade da passagem."]
     etapa17_snapshotPrecosMetadata --> etapa18_economiaFinanceira["<b>18. Economia financeira em reais</b><br/>calculate_financial_savings decompõe a economia: combustível não queimado, desgaste de freio evitado e micro-manutenção, em R$."]
     etapa18_economiaFinanceira --> etapa19_comparativoCenarios["<b>19. Comparação: sem tag vs. com tag</b><br/>build_comparison monta os dois cenários e os deltas de tempo, combustível, CO₂ e R$ entre eles."]
-    etapa19_comparativoCenarios --> etapa20_metaforasLegado["<b>20. Metáforas legado (retrocompatível)</b><br/>get_ludic_metrics calcula árvores salvas, cargas de celular e filtros de café a partir do CO₂e total, usando os fatores lúdicos dos specs."]
+    etapa19_comparativoCenarios --> etapa20_metaforasLegado["<b>20. Metáforas (versão antiga, mantida para compatibilidade)</b><br/>get_ludic_metrics calcula árvores salvas, cargas de celular e filtros de café a partir do CO₂e total, usando os fatores nos specs."]
     etapa20_metaforasLegado --> etapa21_metaforasPorEixo["<b>21. Metáforas visuais por eixo</b><br/>get_ludic_metrics_by_axis gera as listas para a interface, por eixo: carbono (árvores), água (garrafas) e papel (folhas A4)."]
   end
 
@@ -82,11 +82,11 @@ Dentro de `build_comparison`, o pseudocódigo reutiliza `calculate_paper_and_wat
 
 ### Diagrama da classe `OfficialSourceProvider`
 
-A **sincronização** (BigQuery ANP, fatores MCTI) **não** ocorre em cada webhook na referência §6: costuma ser **job agendado ou arranque** que chama `sync_all_sources` e **popula a BD**. Em cada passagem, `get_all_specs` apenas **lê** a BD (ou usa `_fallback_technical_specs` se ainda não houver documento persistido).
+A **sincronização** (BigQuery ANP, fatores MCTI) **não** ocorre em cada webhook na referência §6: costuma ser **job agendado ou na inicialização do serviço** que chama `sync_all_sources` e **popula o banco de dados**. Em cada passagem, `get_all_specs` apenas **lê** o banco de dados (ou usa `_fallback_technical_specs` se ainda não houver documento persistido).
 
 ```mermaid
 flowchart TD
-  subgraph subgraphSync [Sincronização materializa a BD — OfficialSourceProvider]
+  subgraph subgraphSync [Sincronização preenche o banco de dados — OfficialSourceProvider]
     direction TB
     syncA_orquestrarTodasFontes["<b>A. Sincronização de todas as fontes</b><br/>sync_all_sources é um job agendado (não por passagem) que dispara a atualização de preços ANP e fatores de emissão MCTI."]
     syncB_precosBigQueryANP["<b>B. Atualização dos preços ANP via BigQuery</b><br/>_sync_fuel_prices_from_bq consulta a tabela ANP no BigQuery, agrega por UF e combustível, e prepara para o banco."]
@@ -115,7 +115,7 @@ flowchart TD
   syncD_persistirSpecsNaBd -.->|após sync as leituras seguintes| readF_lerDocumentoPersistido
 ```
 
-Constante e URLs da tabela ANP: secção [URLs e fontes de dados](#urls-e-fontes-de-dados) deste ficheiro e secção 4 de [`engine-calculo.md`](engine-calculo.md).
+Constante e URLs da tabela ANP: seção [URLs e fontes de dados](#urls-e-fontes-de-dados) deste arquivo e seção 4 de [`engine-calculo.md`](engine-calculo.md).
 
 ---
 
@@ -129,7 +129,7 @@ Constante e URLs da tabela ANP: secção [URLs e fontes de dados](#urls-e-fontes
 
 ## `TransactionOrchestrator`
 
-> **Stubs — apenas contratos de API.** Os corpos dos métodos abaixo são intencionalmente `pass`. A implementação completa está em [`engine-calculo.md §6 Bloco 4`](engine-calculo.md#bloco-4--transactionorchestrator).
+> **Apenas assinaturas — o corpo `pass` é intencional.** A implementação completa está em [`engine-calculo.md §6 Bloco 4`](engine-calculo.md#bloco-4--transactionorchestrator).
 
 Ponto de entrada após o webhook: liga `VehicleDatabase`, `OfficialSourceProvider` e `CalcEngine` (sem lógica de cálculo).
 
@@ -160,7 +160,7 @@ class TransactionOrchestrator:
 
 ## `VehicleDatabase`
 
-> **Stubs — apenas contratos de API.** Implementação completa em [`engine-calculo.md §6 Bloco 2`](engine-calculo.md#bloco-2--vehicledatabase).
+> **Apenas assinaturas — implementação completa em [`engine-calculo.md §6 Bloco 2`](engine-calculo.md#bloco-2--vehicledatabase).**
 
 Resolve `vehicle_data` no contrato da `CalcEngine` (`plate`, `category`, `fuel_type`, `model`, …). Contrato detalhado: `engine-calculo.md`.
 
@@ -169,14 +169,14 @@ from typing import Any, Dict
 
 
 class VehicleDatabase:
-    """Frota interna (BD) + API Senatran + perfil genérico (US06). Implementação: engine-calculo.md §6 Bloco 2."""
+    """Frota interna (banco de dados) + API Senatran + perfil genérico (US06). Implementação: engine-calculo.md §6 Bloco 2."""
 
     def __init__(self, db_connection: Any, api_credentials: Any) -> None:
-        """Guarda acesso à BD interna e credenciais Serpro."""
+        """Guarda acesso ao banco de dados interno e credenciais Serpro."""
         pass
 
     def get_complete_vehicle_data(self, plate: str) -> Dict[str, Any]:
-        """BD local → GET Senatran → persistir e devolver → fallback estático se falhar."""
+        """Banco de dados local → GET Senatran → persistir e retornar → fallback estático se falhar."""
         pass
 
     def _map_external_to_internal(self, plate: str, raw: Dict[str, Any]) -> Dict[str, Any]:
@@ -192,9 +192,9 @@ class VehicleDatabase:
 
 ## `_fallback_technical_specs` e `OfficialSourceProvider`
 
-> **Stubs — apenas contratos de API.** Implementação completa em [`engine-calculo.md §6 Bloco 3`](engine-calculo.md#bloco-3--officialsourceprovider-e-_fallback_technical_specs).
+> **Apenas assinaturas — implementação completa em [`engine-calculo.md §6 Bloco 3`](engine-calculo.md#bloco-3--officialsourceprovider-e-_fallback_technical_specs).**
 
-Fornecem `technical_specs` para `self.specs` na `CalcEngine`. Fallback: defaults quando a BD ainda não tem specs (chaves e exemplos na §4 de `engine-calculo.md`).
+Fornecem os dados técnicos (`technical_specs`) para a engine usar nos cálculos. Se o banco de dados ainda não tiver dados sincronizados, usa valores padrão (ver §4 de `engine-calculo.md`).
 
 ```python
 from typing import Any, Dict
@@ -203,7 +203,7 @@ FUEL_PRICES_BQ_TABLE = "basedosdados.br_anp_precos_combustiveis"
 
 
 def _fallback_technical_specs() -> Dict[str, Any]:
-    """Retorna dict completo de specs quando a BD ainda não tem documento persistido (estrutura na §4 de engine-calculo.md)."""
+    """Retorna dict completo de specs quando o banco de dados ainda não tem documento persistido (estrutura na §4 de engine-calculo.md)."""
     pass
 
 
@@ -220,17 +220,17 @@ class OfficialSourceProvider:
 
     def _sync_fuel_prices_from_bq(self) -> None:
         """
-        Popula a BD com fuel_prices_by_uf e fuel_prices_meta a partir de FUEL_PRICES_BQ_TABLE
-        (cliente BigQuery + agregação por UF na camada de dados).
+        Popula o banco de dados com fuel_prices_by_uf e fuel_prices_meta a partir de FUEL_PRICES_BQ_TABLE
+        (integração com BigQuery, com agrupamento de preços por UF).
         """
         pass
 
     def _sync_ghg_factors_mcti(self) -> None:
-        """Sincroniza ou materializa fatores oficiais MCTI / GHG Protocol."""
+        """Sincroniza e persiste os fatores oficiais MCTI / GHG Protocol."""
         pass
 
     def get_all_specs(self) -> Dict[str, Any]:
-        """Lê specs atuais da BD ou devolve _fallback_technical_specs() se vazio."""
+        """Lê specs atuais do banco de dados ou retorna _fallback_technical_specs() se vazio."""
         pass
 ```
 
@@ -238,9 +238,9 @@ class OfficialSourceProvider:
 
 ## `_default_ludic_metaphors` e `CalcEngine`
 
-> **Stubs — apenas contratos de API.** Implementação completa em [`engine-calculo.md §6 Bloco 1`](engine-calculo.md#bloco-1--calcengine).
+> **Apenas assinaturas — implementação completa em [`engine-calculo.md §6 Bloco 1`](engine-calculo.md#bloco-1--calcengine).**
 
-Núcleo do payload da passagem. `get_ludic_metrics_by_axis` usa `_default_ludic_metaphors()` quando `specs` não define `ludic_metaphors`.
+Motor principal de cálculo por passagem. `get_ludic_metrics_by_axis` usa metáforas padrão quando `specs["ludic_metaphors"]` não está definido.
 
 ```python
 from __future__ import annotations
@@ -260,24 +260,22 @@ class CalcEngine:
         """Atribui self.specs (contrato technical_specs na §4 de engine-calculo.md)."""
         pass
 
-    # --- Conversão universal (pivo CO₂e) ---
+    # --- Conversão para CO₂e (unidade comum do motor) ---
 
     def convert_to_co2(self, value: float, unit: str) -> float:
         """
-        Normaliza qualquer unidade de entrada para kg CO₂e (pivo).
-        Ponto de extensão: para suportar nova unidade de entrada, adicione um branch aqui.
-        unit: water_liters, paper_tickets, fuel_liters_<tipo>.
-        Não é chamado em process_transaction (que calcula o pivo diretamente); é o
-        contrato público para chamadores externos que normalizam unidades heterogêneas.
+        Converte qualquer tipo de entrada para kg CO₂e, a unidade comum usada no motor.
+        unit pode ser: water_liters, paper_tickets, fuel_liters_<tipo> (ex.: fuel_liters_gasolina_c).
+        Atenção: process_transaction não usa este método — ele calcula CO₂e diretamente.
+        Use este método apenas para converter uma entrada avulsa fora do fluxo principal.
         """
         pass
 
     def convert_from_co2(self, co2_kg: float, target_unit: str) -> float:
         """
-        Converte kg CO₂e para unidade simbólica (pivo inverso).
-        Ponto de extensão: para adicionar/remover metáfora de saída, altere specs['benchmarks']
-        e acrescente/remova uma chave — sem mudar a lógica de cálculo principal.
-        target_unit: trees, water, smartphone, km_driven, burgers.
+        Converte kg CO₂e para uma representação de fácil entendimento para o usuário.
+        target_unit pode ser: trees, water, smartphone, km_driven, burgers.
+        Para adicionar ou remover uma opção, altere specs['benchmarks'] e o mapping no corpo do método.
         """
         pass
 
@@ -292,7 +290,7 @@ class CalcEngine:
         pass
 
     def calculate_avoided_acceleration_fuel(self, category: str) -> float:
-        """Litros de combustível do consumo extra ao acelerar após uma paragem (fixo por passagem, por categoria)."""
+        """Litros de combustível do consumo extra ao acelerar após uma parada (fixo por passagem, por categoria)."""
         pass
 
     def calculate_paper_and_water_savings(self, is_digital: bool) -> Dict[str, float]:
@@ -302,7 +300,7 @@ class CalcEngine:
     # --- Financeiro ---
 
     def resolve_fuel_price_brl_per_liter(self, uf_passagem: str, fuel_type: str) -> tuple[float, str]:
-        """Determina preço em R$/litro e UF efetiva para o snapshot (fallbacks em specs)."""
+        """Busca o preço do combustível em R$/L para a UF da passagem. Fallback em cascata até R$ 5,80. Retorna (preço, UF usada)."""
         pass
 
     def calculate_financial_savings(
@@ -315,9 +313,11 @@ class CalcEngine:
         stops_avoided: int = 1,
     ) -> Dict[str, Any]:
         """
-        Decomposição em combustível (marcha lenta + consumo extra após paragem), desgaste de
-        travões por paragem na cabine de pedágio, manutenção e total em R$; alinhado a
-        metadata.pricing_snapshot.
+        Calcula a economia financeira em R$ da passagem, dividida em:
+        - combustível não queimado (marcha lenta + aceleração evitada)
+        - desgaste de freios evitado por não parar na cabine
+        - micro-manutenção genérica
+        Use em fuel_price_brl_per_liter o valor retornado por resolve_fuel_price_brl_per_liter.
         """
         pass
 
@@ -332,17 +332,17 @@ class CalcEngine:
         fuel_price_brl_per_liter: float,
     ) -> Dict[str, Any]:
         """
-        US05: sem tag (espera plena + consumo extra após paragem) vs. com tag (tempo real,
-        sem esse consumo extra modelado); mesmo R$/litro nos dois ramos.
-        Internamente chama calculate_financial_savings para AMBOS os cenários como modelo
-        de custo de cada ramo — o 'delta.estimated_brl' é a economia real resultante.
+        Compara dois cenários (US05):
+        - without_tag: motorista espera o baseline completo e para na cabine de pedágio
+        - with_tag: motorista passa no tempo real, sem parar
+        Mesmo preço de combustível nos dois cenários. O delta.estimated_brl é a diferença de custo entre eles.
         """
         pass
 
     # --- Storytelling ---
 
     def get_ludic_metrics(self, total_co2_avoided: float) -> Dict[str, Any]:
-        """Métricas legado (árvores, cargas de telemóvel, filtros de café) a partir de ludic_factors."""
+        """Versão antiga das metáforas (mantida para compatibilidade). Retorna árvores, cargas de celular e filtros de café como números únicos."""
         pass
 
     def get_ludic_metrics_by_axis(
@@ -351,7 +351,7 @@ class CalcEngine:
         water_liters: float,
         paper_tickets: float,
     ) -> Dict[str, List[Dict[str, Any]]]:
-        """Lista de metáforas por eixo carbon, water, paper a partir de specs ou default (US02)."""
+        """Gera as metáforas por eixo (carbono, água, papel) a partir dos specs. Se não houver metáforas nos specs, usa os valores padrão."""
         pass
 
     # --- Payback ---
@@ -362,7 +362,7 @@ class CalcEngine:
         monthly_tag_fee_brl: float,
         billing_months: float = 1.0,
     ) -> Dict[str, Any]:
-        """Estado de payback (taxas, líquido, status tag_paga / em_payback) a partir de acumulado e mensalidade (US11)."""
+        """Calcula se a tag já pagou o custo de assinatura: net_brl = economias acumuladas − mensalidades × meses. Status: tag_paga ou em_payback (US11)."""
         pass
 
     # --- Orquestração ---
