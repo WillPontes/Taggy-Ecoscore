@@ -45,11 +45,11 @@ Código de referência completo: [engine-calculo.md §6](engine-calculo.md#6-có
 
 | Função / Método             | Resumo                                                                                                                  | Responsável | Revisado por |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- | ------------ |
-| `_fallback_technical_specs` | Função standalone. Retorna o dicionário completo de specs quando o banco de dados ainda está vazio (primeira execução). | —           | —            |
-| `sync_all_sources`          | Dispara `_sync_fuel_prices_from_bq` e `_sync_ghg_factors_mcti` (job agendado, não por passagem).                        | —           | —            |
-| `_sync_fuel_prices_from_bq` | Consulta a tabela ANP no BigQuery, agrega por UF e persiste `fuel_prices_by_uf` + `fuel_prices_meta`.                   | —           | —            |
-| `_sync_ghg_factors_mcti`    | Sincroniza e persiste os fatores oficiais de emissão GHG do MCTI.                                                       | —           | —            |
-| `get_all_specs`             | Lê `technical_specs` do banco de dados; se vazio, retorna `_fallback_technical_specs()`.                                | —           | —            |
+| `_fallback_technical_specs` | Função standalone. Retorna o dicionário completo de specs quando o banco de dados ainda está vazio (primeira execução). | Jean        | —            |
+| `sync_all_sources`          | Dispara `_sync_fuel_prices_from_bq` e `_sync_ghg_factors_mcti` (job agendado, não por passagem).                        | Jean        | —            |
+| `_sync_fuel_prices_from_bq` | Consulta a tabela ANP no BigQuery, agrega por UF e persiste `fuel_prices_by_uf` + `fuel_prices_meta`.                   | Jean        | —            |
+| `_sync_ghg_factors_mcti`    | Sincroniza e persiste os fatores oficiais de emissão GHG do MCTI.                                                       | Jean        | —            |
+| `get_all_specs`             | Lê `technical_specs` do banco de dados; se vazio, retorna `_fallback_technical_specs()`.                                | Jean        | —            |
 
 ---
 
